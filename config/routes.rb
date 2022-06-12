@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'countries/index'
+  get 'countries/show'
+  get 'reviews/new'
+  get 'reviews/index'
+  get 'reviews/show'
+  get 'reviews/edit'
+  get 'users/show'
+  get 'users/edit'
+  get 'homes/top'
+  get 'homes/about'
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
