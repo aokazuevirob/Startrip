@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:show, :edit, :update]
 
-    putch "users/withdraw" => "users#withdraw"
+    patch "users/withdraw" => "users#withdraw"
     get "users/quit" => "users#quit"
   end
 
