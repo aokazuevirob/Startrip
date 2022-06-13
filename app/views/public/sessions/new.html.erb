@@ -1,26 +1,49 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-1">
+      <h3 class="bg-secondary text-white d-inline-block px-4 mx-5 mb-3">ログイン</h3>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-8 offset-2 my-4">
+      <h4 class="bg-secondary text-white d-inline-block px-4">会員の方はこちらからログイン</h4>
+      <div class="text-center"><p class="alert"><%= alert %></p></div>
+    </div>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="row">
+    <div class="col-8 offset-2 my-2">
+      <table class="table table-borderless ml-5">
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <th><%= f.email_field :email, autofocus: true, autocomplete: "email", "placeholder" => "sample@example.com" %></th>
+        </tr>
+        <tr>
+          <th><%= f.label :パスワード %></th>
+          <th>
+            <%= f.password_field :password, autocomplete: "current-password" %><br>
+            <% if devise_mapping.rememberable? %>
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            <% end %>
+          </th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="actions col-12 text-center">
+      <%= f.submit "L o g    i n", class: "btn btn-info px-5 ml-5" %>
+    </div>
+  </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="row">
+    <div class="col-8 offset-2 my-5">
+      <h4 class="bg-secondary text-white d-inline px-4">会員登録がお済みでない方</h4>
+      <p class="ml-5 my-3"><%= link_to "こちら",new_user_registration_path, class: "hover-link" %>から新規登録を行ってください。</p>
+    </div>
   </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
