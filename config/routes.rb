@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # URL /users/sign_in ...
   devise_for :users, controllers: {
     registrations: "public/registrations",
-    sessions: "admin/sessions"
+    sessions: "public/sessions"
   }
 
   root to: "public/homes#top"
