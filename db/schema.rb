@@ -25,36 +25,56 @@ ActiveRecord::Schema.define(version: 2022_06_12_045800) do
   end
 
   create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "review_comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
+    t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "review_tags", force: :cascade do |t|
+    t.integer "review_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "country_id"
+    t.string "area"
+    t.float "rate"
+    t.text "body"
+    t.integer "travel_cost"
+    t.integer "accommodation_fee"
+    t.integer "night"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -67,10 +87,12 @@ ActiveRecord::Schema.define(version: 2022_06_12_045800) do
     t.datetime "remember_created_at"
     t.string "last_name"
     t.string "first_name"
-    t.string "last_name_kana"
-    t.string "first_name_kana"
     t.string "nickname"
     t.string "phone_number"
+    t.integer "gender"
+    t.date "birth_date"
+    t.boolean "is_deleted", default: false
+    t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
