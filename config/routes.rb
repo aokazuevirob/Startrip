@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get "about" => "homes#about"
     get "reviews/confirm" => "reviews#confirm"
+    resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :favorites, only: [:create, :destroy]

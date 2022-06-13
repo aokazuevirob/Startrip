@@ -34,10 +34,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       t.string :last_name
       t.string :first_name
-      t.string :last_name_kana
-      t.string :first_name_kana
       t.string :nickname
       t.string :phone_number
+      t.integer :gender
+      t.data :birth_date
       t.timestamps null: false
     end
 
