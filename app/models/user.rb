@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, {length: {maximum: 50}}
   
+  enum gender: { male: 0, female: 1, no_answer: 2}
+  
   def get_user_image
     (user_image.attached?) ? user_image : 'no_image.jpg'
   end
