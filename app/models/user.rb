@@ -15,14 +15,21 @@ class User < ApplicationRecord
   # user画面で使用
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  
+
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, {length: {maximum: 50}}
-  
+
   enum gender: { male: 0, female: 1, no_answer: 2}
-  
+
   def get_user_image
     (user_image.attached?) ? user_image : 'no_image.jpg'
+  end
+
+  def self.guest
+    find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
   end
 
   # followした時の処理
@@ -38,5 +45,5 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
 end
