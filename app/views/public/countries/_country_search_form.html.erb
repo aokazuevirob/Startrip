@@ -1,0 +1,15 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>国名検索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% countries.each do |country| %>
+    <tr>
+      <td><%= country.name %></td>
+        <!-- link_to country.name, countries_path(country_id: country.id) -->
+    </tr>
+    <% end %>
+  </tbody>
+</table>

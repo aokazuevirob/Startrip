@@ -8,10 +8,12 @@
   </div>
   
   <div class="row">
+    
     <div class="col-3">
       <!--ユーザー画像-->
       <%= image_tag user.get_profile_image, size:'220x220' %>
     </div>
+    
     <div class="col-9">
       <!--ニックネーム、紹介、テーブル-->
       <div class="nickname">
@@ -20,6 +22,7 @@
       <div class="intro">
         <%= @user.introduction %>
       </div>
+      
       <table class="table table-bordered table-hover">
         <thead class="bg-light-brown">
           <tr>
@@ -49,5 +52,8 @@
   
   <div class="row">
     <!--投稿一覧-->
+    <h3>投稿一覧</h3>
+    <%= render 'reviews/index', reviews: @reviews %>
   </div>
+  
 </div>

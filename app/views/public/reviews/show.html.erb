@@ -1,2 +1,12 @@
-<h1>Public::Reviews#show</h1>
-<p>Find me in app/views/public/reviews/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+        <%= render 'users/info', user: @user, users: @users %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <!--投稿詳細を表示する-->
+    </div>
+  </div>
+</div>

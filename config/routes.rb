@@ -28,11 +28,9 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :favorites, only: [:create, :destroy]
     end
-    resources :users, only: [:show, :edit, :update]
-
-    # フォロー/フォロワー一覧
-    resources :users do
+    resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
+      # フォロー/フォロワー一覧
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
