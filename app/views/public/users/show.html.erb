@@ -1,19 +1,19 @@
 <div class="container">
-  
-  <div class="row">
+
+  <div class="p-rvwr-cover__image">
     <!--ユーザー背景-->
-    <div class="card" style="max-width: 1120px;">
-      <%= image_tag user.get_user_bg_image, size:'1120x234' %>
+    <div class="tbcrop-frame" style="overflow: hidden; position: relative; width: 980px; height: 250px;">
+      <%= image_tag @user.get_user_bg_image(980, 250) %>
     </div>
   </div>
-  
+
   <div class="row">
-    
+
     <div class="col-3">
       <!--ユーザー画像-->
-      <%= image_tag user.get_profile_image, size:'220x220' %>
+      <%= image_tag @user.get_user_image(220, 220) %>
     </div>
-    
+
     <div class="col-9">
       <!--ニックネーム、紹介、テーブル-->
       <div class="nickname">
@@ -22,7 +22,7 @@
       <div class="intro">
         <%= @user.introduction %>
       </div>
-      
+
       <table class="table table-bordered table-hover">
         <thead class="bg-light-brown">
           <tr>
@@ -41,7 +41,7 @@
             <% end %>
           </td>
           <td>
-            <%= link_to user_followers_path(user) do %>
+            <%= link_to user_followers_path(@user) do %>
               <%= @user.followers.count %>
             <% end %>
           </td>
@@ -49,11 +49,11 @@
       </table>
     </div>
   </div>
-  
+
   <div class="row">
     <!--投稿一覧-->
     <h3>投稿一覧</h3>
-    <%= render 'reviews/index', reviews: @reviews %>
+    <%= render 'public/reviews/index', reviews: @reviews %>
   </div>
-  
+
 </div>

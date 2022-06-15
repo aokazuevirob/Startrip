@@ -11,7 +11,7 @@
     <% reviews.each do |review| %>
       <tr>
         <td><%= link_to(review.user) do %>
-          <%= image_tag review.user.get_profile_image, size:'50x50' %>
+          <%= image_tag review.user.get_user_image, size:'50x50' %>
           <% end %>
         </td>
         <td><%= link_to review.title,review, class: "review_#{review.id}" %></td>
