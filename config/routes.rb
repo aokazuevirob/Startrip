@@ -30,6 +30,13 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:show, :edit, :update]
 
+    # フォロー/フォロワー一覧
+    resources :users do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+
     patch "users/withdraw" => "users#withdraw"
     get "users/quit" => "users#quit"
   end

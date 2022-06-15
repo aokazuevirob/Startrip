@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :user_image
+  has_one_attached :user_bg_image
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :review_comments, dependent: :destroy
@@ -21,8 +22,20 @@ class User < ApplicationRecord
 
   enum gender: { male: 0, female: 1, no_answer: 2}
 
-  def get_user_image
-    (user_image.attached?) ? user_image : 'no_image.jpg'
+  def get_user_image(width, height)
+    unless user_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      user_image.attach(io: File.open(file_path), filename: 'defult-image.jpg', content_type: 'image/jpeg')
+    end
+    user_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def get_user_bg_image(width, height)
+    unless user_bg_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image1.jpg')
+      user_bg_image.attach(io: File.open(file_path), filename: 'defult-image1.jpg', content_type: 'image/jpeg')
+    end
+    user_bg_image.variant(resize_to_limit: [width, height]).processed
   end
 
   def self.guest

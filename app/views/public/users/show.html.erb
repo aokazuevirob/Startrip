@@ -2,14 +2,48 @@
   
   <div class="row">
     <!--ユーザー背景-->
+    <div class="card" style="max-width: 1120px;">
+      <%= image_tag user.get_user_bg_image, size:'1120x234' %>
+    </div>
   </div>
   
   <div class="row">
     <div class="col-3">
       <!--ユーザー画像-->
+      <%= image_tag user.get_profile_image, size:'220x220' %>
     </div>
     <div class="col-9">
       <!--ニックネーム、紹介、テーブル-->
+      <div class="nickname">
+        <%= @user.nickname %>
+      </div>
+      <div class="intro">
+        <%= @user.introduction %>
+      </div>
+      <table class="table table-bordered table-hover">
+        <thead class="bg-light-brown">
+          <tr>
+            <td>口コミ数</td>
+            <td>フォロー</td>
+            <td>フォロワー</td>
+          </tr>
+        </thead>
+        <tbody>
+          <td>
+            <!--口コミ数を表示-->
+          </td>
+          <td>
+            <%= link_to user_followings_path(@user) do %>
+              <%= @user.followings.count %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user_followers_path(user) do %>
+              <%= @user.followers.count %>
+            <% end %>
+          </td>
+        </tbody>
+      </table>
     </div>
   </div>
   
