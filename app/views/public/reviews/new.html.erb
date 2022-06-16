@@ -1,6 +1,6 @@
 <div class="container">
   <h3 class="bg-secondary text-white d-inline-block px-4 ml-5">投稿内容入力</h3>
-  <%= render 'layouts/errors', model: @review %>
+  <%= render 'layouts/errors', obj: @review %>
 
   <div class="container my-4">
     <%= form_with model: @review, url: confirm_reviews_path do |f| %>
@@ -16,7 +16,7 @@
 
     <h4>本経験の評価（必須）</h4>
     <div class="form-group" id="rating-form">
-      <%= f.hidden_field :rate, value => 'score' %>
+      <%= f.hidden_field :rate, id: :review_star %>
     </div>
 
     <script>
@@ -67,6 +67,7 @@
     <div class="form-group">
       <%= f.file_field :travel_images, multiple: true %>
     </div>
-   </div>
+    <% end %>
+  </div>
 
 </div>
