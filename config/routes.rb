@@ -25,9 +25,14 @@ Rails.application.routes.draw do
     get "reviews/confirm" => "reviews#confirm"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
+
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :favorites, only: [:create, :destroy]
+      collection do
+        post "confirm"
+      end
     end
+
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       # フォロー/フォロワー一覧

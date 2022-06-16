@@ -58,5 +58,11 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+  
+  private
+  
+  def user_params
+    params.require(:user).permit(:last_name, :first_name, :nickname, :phone_number, :gender, :birth_date, :is_deleted, :introduction, :user_image, :user_bg_image)
+  end
 
 end

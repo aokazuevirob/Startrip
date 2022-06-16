@@ -1,2 +1,72 @@
-<h1>Public::Reviews#new</h1>
-<p>Find me in app/views/public/reviews/new.html.erb</p>
+<div class="container">
+  <h3 class="bg-secondary text-white d-inline-block px-4 ml-5">投稿内容入力</h3>
+  <%= render 'layouts/errors', model: @review %>
+
+  <div class="container my-4">
+    <%= form_with model: @review, url: confirm_reviews_path do |f| %>
+    <h4>ご自身の訪れた国名を選択（必須）</h4>
+    <div class="form-group">
+      <%= f.country_select :country_code, "palceholder" => "!--選択してください--" %>
+    </div>
+
+    <h4>ご自身の訪れた地域を入力（必須）</h4>
+    <div class="form-group">
+      <%= f.text_area :area, "palceholder" => "!--入力してください--" %>
+    </div>
+
+    <h4>本経験の評価（必須）</h4>
+    <div class="form-group" id="rating-form">
+      <%= f.hidden_field :rate, value => 'score' %>
+    </div>
+
+    <script>
+    $(document).on('turbolinks:load', function() {
+      $('#rating-form').empty();
+      $('#rating-form').raty({
+        size: 36,
+        starOff: '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'review[rate]',
+        half: true,
+      });
+    })
+    </script>
+
+    <h4>タイトル</h4>
+    <div class="form-group">
+      <%= f.text_area :title, :size => "70x5", placeholder:"タイトルを入力" %>
+    </div>
+
+    <h4>口コミの入力（必須）</h4>
+    <div class="form-group">
+      <%= f.text_area :body, :size => "70x5", placeholder:"ご経験された内容を記載ください。" %>
+    </div>
+
+    <h4>出国した国名を選択（任意）</h4>
+    <div class="form-group">
+      <%= f.country_select :departure, "palceholder" => "!--選択してください--" %>
+    </div>
+
+    <h4>往復の移動費用（任意）</h4>
+    <div class="form-group">
+      <%= f.text_field :travel_cost %>円
+    </div>
+
+    <h4>宿泊費用（任意）</h4>
+    <div class="form-group">
+      <%= f.text_field :accommodation_fee %>円
+    </div>
+
+    <h4>宿泊日数（任意）</h4>
+    <div class="form-group">
+      <%= f.select :night, {'1泊': 1, '2泊': 2, '3泊': 3, '4泊': 4, '5泊': 5, '6泊': 6, '7泊以上': 7}, { include_blank: '!--選択してください--'} %>
+    </div>
+
+    <h4>写真をアップロード（任意）</h4>
+    <div class="form-group">
+      <%= f.file_field :travel_images, multiple: true %>
+    </div>
+   </div>
+
+</div>
