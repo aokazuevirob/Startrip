@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
     <h1>国名一覧</h1>
+  </div>
+  <div class="row d-flrx flex-wrap">
       <% @parents.each do |parent| %>
-      <ul>
+      <ul style="column-count: 2;">
         <% parent.children.each do |child| %>
-        <li><%= link_to "#{child.name}", genres_path(child) %></li>
+        <li><%= "#{child.name}" %></li>
         <ul>
           <% child.children.each do |grandchild| %>
           <li><%= link_to "#{grandchild.name}", genres_path(grandchild) %></li>

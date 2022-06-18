@@ -1,4 +1,5 @@
 class Public::CountriesController < ApplicationController
+
   def index
   end
 
