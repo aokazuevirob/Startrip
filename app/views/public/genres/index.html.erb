@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <h1>国名一覧</h1>
+      <% @parents.each do |parent| %>
+      <ul>
+        <% parent.children.each do |child| %>
+        <li><%= link_to "#{child.name}", genres_path(child) %></li>
+        <ul>
+          <% child.children.each do |grandchild| %>
+          <li><%= link_to "#{grandchild.name}", genres_path(grandchild) %></li>
+          <% end %>
+        </ul>
+        <% end %>
+      </ul>
+      <% end %>
+  </div>
+</div>

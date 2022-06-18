@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'genres/index'
+  end
  # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
     get "reviews/confirm" => "reviews#confirm"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
+    resources :genres, only: [:index]
 
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :favorites, only: [:create, :destroy]
