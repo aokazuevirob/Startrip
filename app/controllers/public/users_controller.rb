@@ -4,6 +4,10 @@ class Public::UsersController < ApplicationController
     @reviews = Review.all
   end
 
+  def confirm
+    @user = current_user
+  end
+
   def edit
     @user = current_user
   end

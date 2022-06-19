@@ -25,7 +25,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get "about" => "homes#about"
-    get "reviews/confirm" => "reviews#confirm"
+    get "review/confirm" => "reviews#confirm"
+    get "user/confirm" => "users#confirm"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
     resources :genres, only: [:index]
@@ -45,7 +46,7 @@ Rails.application.routes.draw do
     end
 
     patch "users/withdraw" => "users#withdraw"
-    get "users/quit" => "users#quit"
+    get "user/quit" => "users#quit"
   end
 
   namespace :admin do
