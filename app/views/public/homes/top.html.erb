@@ -18,3 +18,24 @@
     </div>
   </div>
 </div>
+
+<div class="container">
+  <%= render 'public/maps/index' %>
+</div>
+
+<div class="container">
+<h2 class="d-inline-block px-4 mb-2 bg-teal text-white">国名からジャンル検索</h2>
+  <div class="row">
+    <% @countries.each do |country| %>
+      <div class="col-3">
+        <%= link_to country_path(country), style: "color:black;" do %>
+          <p><%= image_tag country.country_imag.variant(resize_to_fill: [200, 150]) %></p>
+          <p class="ml-1"><%= country.name %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <p class="text-right mt-1">
+    <%= link_to "国名一覧を表示>>", genres_path, class: "hover-link" %>
+  </p>
+</div>

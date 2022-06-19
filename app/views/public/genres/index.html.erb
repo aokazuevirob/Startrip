@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="row">
-    <h1>国名一覧</h1>
+  <div class="row bg-teal text-white">
+    <h1>国名から探す</h1>
   </div>
   <div class="row d-flrx flex-wrap">
       <% @parents.each do |parent| %>
-      <ul style="column-count: 2;">
+      <ul>
         <% parent.children.each do |child| %>
         <li><%= "#{child.name}" %></li>
-        <ul>
+        <ul style="column-count: 2;">
           <% child.children.each do |grandchild| %>
           <li><%= link_to "#{grandchild.name}", genres_path(grandchild) %></li>
           <% end %>
