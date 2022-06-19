@@ -3,10 +3,10 @@
   <%= render 'layouts/errors', obj: @review %>
 
   <div class="container my-4">
-    <%= form_with model: @review, url: confirm_reviews_path do |f| %>
+    <%= form_with model: @review, local:true do |f| %>
     <h4>ご自身の訪れた国名を選択（必須）</h4>
     <div class="form-group">
-      <%= f.country_select :country_code, "palceholder" => "!--選択してください--" %>
+      <%= f.country_select :country_code, prompt: '!--選択してください--' %>
     </div>
 
     <h4>ご自身の訪れた地域を入力（必須）</h4>
@@ -45,7 +45,7 @@
 
     <h4>出国した国名を選択（任意）</h4>
     <div class="form-group">
-      <%= f.country_select :departure, "palceholder" => "!--選択してください--" %>
+      <%= f.country_select :departure, prompt: '!--選択してください--' %>
     </div>
 
     <h4>往復の移動費用（任意）</h4>
@@ -66,6 +66,10 @@
     <h4>写真をアップロード（任意）</h4>
     <div class="form-group">
       <%= f.file_field :travel_images, multiple: true %>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+      <%= f.submit "投稿する", class: "btn btn-success mx-2 px-5" %>
     </div>
     <% end %>
   </div>

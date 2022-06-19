@@ -13,22 +13,21 @@ class Review < ApplicationRecord
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1}, presence: true
 
-  def get_travel_image
-    (travel_image.attached?) ? travel_image : 'no_image1.jpg'
+  def get_travel_images(width, height)
+    (travel_images.attached?) ? travel_images : 'no_image1.jpg'
   end
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
 
-  def country
-    Carmen::Country.coded(country_code, departure)
+  def travel_country
+    Carmen::Country.coded(country_code)
   end
 
-  private
-
-  def review_params
-    params.require(:review).permit(:user_id, :country_id, :country_code, :departure, :area, :rate, :title, :body, :travel_cost, :accommodation_fee, :night, :travel_images)
+  def departure_country
+    Carmen::Country.coded(departure)
   end
+
 
 end

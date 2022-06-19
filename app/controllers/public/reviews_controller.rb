@@ -12,10 +12,11 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
+    byebug
     if @review.save
-      redirect_to review_path(@review), notice: "投稿しました！"
+      redirect_to reviews_path, notice: "投稿しました！"
     else
-      render 'confirm'
+      render 'new'
     end
   end
 
@@ -34,7 +35,7 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:user_id, :country_id, :country_code, :area, :rate, :title, :body, :travel_cost, :accommodation_fee, :night, :travel_images)
+    params.require(:review).permit(:user_id, :country_id, :country_code, :area, :rate, :title, :body, :departure, :travel_cost, :accommodation_fee, :night, :travel_images)
   end
 
 end
