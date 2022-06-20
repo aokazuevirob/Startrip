@@ -11,7 +11,7 @@ class Review < ApplicationRecord
   # 5段階評価の範囲指定
   validates :rate, numericality: {
     less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 1}, presence: true
+    greater_than_or_equal_to: 0.5}, presence: true
 
   def get_travel_images(width, height)
     (travel_images.attached?) ? travel_images : 'no_image1.jpg'
