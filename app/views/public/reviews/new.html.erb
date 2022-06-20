@@ -60,11 +60,11 @@
 
     <h4>宿泊日数（任意）</h4>
     <div class="form-group">
-      <%= f.select :night, {'1泊': 1, '2泊': 2, '3泊': 3, '4泊': 4, '5泊': 5, '6泊': 6, '7泊以上': 7}, { include_blank: '!--選択してください--'} %>
+      <%= f.select :night, Review.nights.keys.map {|k| [I18n.t("enums.review.night.#{k}"), k]}, { include_blank: '!--選択してください--'} %>
     </div>
 
     <h4>写真をアップロード（任意）</h4>
-    <div class="form-group">
+    <div class="field">
       <%= f.file_field :travel_images, multiple: true %>
     </div>
 

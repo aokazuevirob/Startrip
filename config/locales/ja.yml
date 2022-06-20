@@ -5,3 +5,13 @@
           male: "男性"
           female: "女性"
           no_answer: "無回答"
+
+      review:
+        night:
+          one_night: "1泊"
+          two_night: "2泊"
+          three_night: "3泊"
+          four_night: "4泊"
+          five_night: "5泊"
+          six_night: "6泊"
+          seven_night: "7泊以上"

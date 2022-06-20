@@ -11,14 +11,14 @@
     <% reviews.each do |review| %>
       <tr>
         <td><%= link_to(review.user) do %>
-          <%= image_tag review.user.get_user_image, size:'50x50' %>
+          <%= image_tag review.user.get_user_image(50, 50) %>
           <% end %>
         </td>
         <td><%= link_to review.title,review, class: "review_#{review.id}" %></td>
         <td><%= review.body %></td>
         <!--いいね機能更新箇所指定-->
         <td class=<%= "favorite-btn" + review.id.to_s %>>
-          <%= render "favorites/favorite-btn", review: review %>
+          <%#= render "favorites/favorite-btn", review: review %>
         </td>
         <td class="comments-count">
           <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
