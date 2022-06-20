@@ -1,11 +1,7 @@
 class Public::ReviewsController < ApplicationController
+  before_action :correct_user, only: [:edit]
   def new
     @review = Review.new
-    @user = current_user
-  end
-
-  def confirm
-    @review = Review.new(review_params)
     @user = current_user
   end
 
@@ -31,12 +27,34 @@ class Public::ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to review_path(@review), notice: "編集内容を保存しました"
+    else
+      render 'edit'
+    end
+  end
+  
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to reviews_path
   end
 
   private
 
   def review_params
     params.require(:review).permit(:user_id, :country_id, :country_code, :area, :rate, :title, :body, :departure, :travel_cost, :accommodation_fee, :night, :travel_image)
+  end
+  
+  def correct_user
+    @review = Review.find(params[:id])
+    @user = @review.user
+    redirect_to(reviews_path) unless @user == current_user
   end
 
 end
