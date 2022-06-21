@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   def index
     @users = User.all
     # ページネーション追加後に変更
-    # @users = User.page(params[:page])
+    # @users = User.all.page(params[:page]).per(6)
   end
 
   def show
