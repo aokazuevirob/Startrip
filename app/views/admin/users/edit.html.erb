@@ -1,2 +1,49 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <h3 class="bg-secondary text-white d-inline-block px-4 ml-5"><%= @user.last_name %><%= @user.first_name %>さんの会員情報編集</h3>
+
+  <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
+  <%= render 'layouts/errors', obj: @user %>
+
+  <div class="form-group row d-flex">
+    <div class="col-2">会員ID</div>
+    <%= @user.id %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :氏名, class: "col-3" %>
+    <%= f.text_field :last_name, autofocus: true, class: "form-control col-3 mr-3" %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :ニックネーム, class: "col-3" %>
+    <%= f.text_field :nickname, class: "form-control col-3 mr-3" %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :メールアドレス, class: "col-3" %>
+    <%= f.email_field :email, class: "form-control col-3 mr-3" %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :電話番号, class: "col-3" %>
+    <%= f.text_field :phone_number, class: "form-control col-3 mr-3" %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :生年月日, class: "col-3" %>
+    <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 15) %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :会員ステータス, class: "col-3" %>
+    <%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", class: "mr-3" %>
+    <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会済み" %>
+  </div>
+
+  <div class="form-group row d-flex">
+    <div class="col-3"></div>
+    <%= f.submit "変更を保存", class: "btn btn-success btn-lg" %>
+  </div>
+  <% end %>
+</div>

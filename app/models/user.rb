@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
+    find_or_create_by!(last_name: 'guestuser', nickname: 'ゲスト', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.last_name = "guestuser"
     end
@@ -58,9 +58,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(:last_name, :first_name, :nickname, :phone_number, :gender, :birth_date, :is_deleted, :introduction, :user_image, :user_bg_image)
   end

@@ -67,3 +67,4 @@ gem "enum_help"
 gem 'rails-i18n'
 gem 'carmen-rails', git: 'git@github.com:Studiosity/carmen-rails.git'
 gem 'ancestry'
+gem 'jquery-rails'

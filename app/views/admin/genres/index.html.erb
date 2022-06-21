@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row bg-teal text-white">
+    <h1>国名から探す</h1>
+  </div>
+  <div class="row d-flrx flex-wrap">
+      <% @parents.each do |parent| %>
+      <ul>
+        <% parent.children.each do |child| %>
+        <li><%= "#{child.name}" %></li>
+        <ul style="column-count: 2;">
+          <% child.children.each do |grandchild| %>
+          <li><%= link_to "#{grandchild.name}", admin_genres_path(grandchild) %></li>
+          <% end %>
+        </ul>
+        <% end %>
+      </ul>
+      <% end %>
+  </div>
+</div>

@@ -17,6 +17,7 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all
+    @review = Review.new
   end
 
   def show
@@ -38,7 +39,7 @@ class Public::ReviewsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
@@ -50,7 +51,7 @@ class Public::ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:user_id, :country_id, :country_code, :area, :rate, :title, :body, :departure, :travel_cost, :accommodation_fee, :night, :travel_image)
   end
-  
+
   def correct_user
     @review = Review.find(params[:id])
     @user = @review.user

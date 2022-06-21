@@ -11,7 +11,7 @@ class Review < ApplicationRecord
   validates :rate, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 0.5}, presence: true
-    
+
   enum night: { one_night: 0, two_night: 1, three_night: 2, four_night: 3, five_night: 4, six_night: 5, seven_night: 6}
 
   def get_travel_image(width, height)
@@ -23,7 +23,7 @@ class Review < ApplicationRecord
   end
 
   def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+    favorites.where(user_id: user.id).exists?
   end
 
   def travel_country

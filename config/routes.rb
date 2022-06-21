@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'genres/index'
+  end
   namespace :public do
     get 'genres/index'
   end
@@ -25,17 +28,14 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get "about" => "homes#about"
-    get "review/confirm" => "reviews#confirm"
     get "user/confirm" => "users#confirm"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
     resources :genres, only: [:index]
 
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-      resources :favorites, only: [:create, :destroy]
-      collection do
-        post "confirm"
-      end
+      resources :review_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
 
     resources :users, only: [:show, :edit, :update] do
@@ -52,8 +52,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top"
     resources :countries, only: [:new, :index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :destroy]
+    resources :reviews, only: [:index, :show, :edit, :destroy]
     resources :users, only: [:index, :show, :edit]
+    resources :genres, only: [:index]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -12,6 +12,9 @@
       </p>
       <%= image_tag review.get_travel_image(200, 200) %>
       <p class="caption"><%= review.travel_country.name %> / <%= review.area %></p>
+      <p class=<%= "favorite-" + @review.id.to_s %> >
+        <%= render 'public/favorites/btn', review: @review %>
+      </p>
       <% end %>
     </div>
     <% end %>
