@@ -13,7 +13,10 @@ class Review < ApplicationRecord
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 0.5}, presence: true
 
+  # 宿泊日数の選択
   enum night: { one_night: 0, two_night: 1, three_night: 2, four_night: 3, five_night: 4, six_night: 5, seven_night: 6}
+  # 投稿範囲の選択
+  enum status: { published: 0, unpublished: 1, draft: 2}
 
   def get_travel_image(width, height)
     unless travel_image.attached?

@@ -13,6 +13,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer :travel_cost
       t.integer :accommodation_fee
       t.integer :night
+      t.integer :status, default: 0, null: false
       t.timestamps
     end
   end

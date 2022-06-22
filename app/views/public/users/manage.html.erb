@@ -1,0 +1,5 @@
+<% @reviews.each do |review| %>
+  <%= link_to review_path(review.id) do %>
+    <%= review.title.truncate(20) %>
+  <% end %>
+<% end %>

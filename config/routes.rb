@@ -28,7 +28,6 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get "about" => "homes#about"
-    get "review/confirm" => "reviews#confirm"
     get "user/confirm" => "users#confirm"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
@@ -42,6 +41,9 @@ Rails.application.routes.draw do
 
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
+      member do
+        get "manage"
+      end
       # フォロー/フォロワー一覧
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
