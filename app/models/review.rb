@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
 
   has_one_attached :travel_image
-  has_many :review_tag, dependent: :destroy
+  has_many :review_tags, dependent: :destroy
   has_many :tags, through: :review_tags
   has_many :favorites, dependent: :destroy
   has_many :review_comments, dependent: :destroy
@@ -43,5 +43,23 @@ class Review < ApplicationRecord
     Carmen::Country.coded(departure)
   end
 
+  def save_tag(sent_tags)
+    # tagの存在を確認して、存在しているtagの名前を全て取得
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # 取得したtagの中から投稿で送信されたtagを除いたものを不要なtagとする
+    old_tags = current_tags - sent_tags
+    # 投稿で送信されたtagの中から取得したtagを除いたものを新規tagとする
+    new_tags = sent_tags - current_tags
+
+    # 不要なtagは削除
+    old_tags.each do |old|
+      self.tags.delete Tag.find_by(name: old)
+    end
+    # 新規tagを保存
+    new_tags.each do |new|
+      new_review_tag = Tag.find_or_create_by(name: new)
+      self.tags << new_review_tag
+    end
+  end
 
 end

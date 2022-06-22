@@ -8,7 +8,11 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
+    # split(',')で正規表現による分割「,」で文字列を区切り、配列で返す
+    tag_list = params[:review][:name].split(',')
     if @review.save
+      # save_tagはmodelに定義
+      @review.save_tag(tag_list)
       redirect_to reviews_path, notice: "投稿しました！"
     else
       render 'new'
@@ -18,7 +22,7 @@ class Public::ReviewsController < ApplicationController
   def index
     @reviews = Review.where(status: :published).order('id DESC')
     @review = Review.new
-
+    @tag_list = Tag.all
   end
 
   def show
@@ -28,15 +32,19 @@ class Public::ReviewsController < ApplicationController
     @review_comment = ReviewComment.new
     # コメントを新着順で表示
     @review_comments = @review.review_comments.order(created_at: :desc)
+    @review_tags = @review.tags
   end
 
   def edit
     @review = Review.find(params[:id])
+    @tag_list = @review.tags.pluck(:name).join(',')
   end
 
   def update
     @review = Review.find(params[:id])
+    tag_list = params[:review][:name].split(',')
     if @review.update(review_params)
+      @review.save_tag(tag_list)
       redirect_to review_path(@review), notice: "編集内容を保存しました"
     else
       render 'edit'

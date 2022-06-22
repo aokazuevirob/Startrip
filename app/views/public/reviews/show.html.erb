@@ -71,6 +71,11 @@
       <div class="row">
         <%= @review.body %>
       </div>
+      <div class="row">
+        <% @review_tags.each do |tag| %>
+          <%= tag.name %><%= "(#{tag.review.count})" %>
+        <% end %>
+      </div>
 
       <div class="row">
         <div class="col">

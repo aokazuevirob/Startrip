@@ -1,0 +1,11 @@
+<!--render呼び出し時に「tag_list: @tag_list」を追記-->
+<% tag_list.each do |list| %>
+  <%= list.name %>
+  <%= "(#{list.review.count})" %>
+<% end %>
+
+<!--render呼び出し時に「reviews: @reviews」を追記-->
+<!--投稿一覧で投稿に紐づくタグを表示-->
+<% reviews.each do |review| %>
+<!--配列要素をnameに格納し、「,」で区切る-->
+  <i class="fas fa-tag"><%= review.tags.map(&:name).join(',') %></i>
