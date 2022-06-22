@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 user-info">
         <%= render 'public/users/info', user: @user, users: @users %>
     </div>
 
-    <div class="col-md-8 offset-1">
+    <div class="col-md-9">
       <div class="row">
         <h4 class="font-wight-normal">投稿詳細</h4>
         <h7 class="offset-1">投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></h7>
@@ -17,11 +17,16 @@
       </div>
 
       <div class="row">
-        <div class="col-md-5 justify-content-center d-block">
-          <%= image_tag @review.get_travel_image(250, 250) %>
-          <p class="favorite-btn_<%= @review.id %>">
+        <div class="col-md-6 justify-content-center d-block">
+          <%= image_tag @review.get_travel_image(300, 300) %>
+          <div class="d-flex">
+          <div class="favorite-btn_<%= @review.id %>">
             <%= render 'public/favorites/btn', review: @review %>
-          </p>
+          </div>
+          <div id="bookmark_button_<%= @review.id %>" style="margin-left: 20px;">
+            <%= render 'public/bookmarks/mark', review: @review %>
+          </div>
+          </div>
         </div>
 
         <div class"col-md-3 offset-1">
@@ -80,7 +85,7 @@
           <hr>
           <% if user_signed_in? %>
           <div class="comment-create">
-            <h3 class="text-left">コメントする</h3>
+            <h5 class="text-left">コメントする</h5>
             <%= render partial: 'public/review_comments/form', locals: { review_comment: @review_comment, review: @review } %>
           </div>
           <% end %>

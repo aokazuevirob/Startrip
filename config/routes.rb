@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :review_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
     end
 
     resources :users, only: [:show, :edit, :update] do

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one_attached :user_bg_image
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :review_comments, dependent: :destroy
 
  # フォローした、されたの関係

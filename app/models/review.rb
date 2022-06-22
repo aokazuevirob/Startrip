@@ -5,6 +5,7 @@ class Review < ApplicationRecord
   has_many :tags, through: :review_tags
   has_many :favorites, dependent: :destroy
   has_many :review_comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   belongs_to :user
 
   # 5段階評価の範囲指定
@@ -24,6 +25,11 @@ class Review < ApplicationRecord
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
+  end
+
+  def bookmarked_by?(user)
+    # bookmarkされていないか
+    bookmarks.where(user_id: user).exists?
   end
 
   def travel_country
