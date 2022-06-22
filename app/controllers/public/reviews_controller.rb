@@ -23,8 +23,10 @@ class Public::ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @user = @review.user
-    @review_comment = ReviewComment.new
     @users = User.all
+    @review_comment = ReviewComment.new
+    # コメントを新着順で表示
+    @review_comments = @review.review_comments.order(created_at: :desc)
   end
 
   def edit

@@ -58,9 +58,26 @@
       </table>
     </div>
     </div>
-
         <p class="caption"><%= @review.title %></p>
         <p><%= @review.body %></p>
     </div>
+  </div>
+
+  <div class="row">
+    <ul>
+      <li class="comment-create">
+        <h3 class="text-left title">コメント</h3>
+      </li>
+      <li id="comments_area">
+        <%= render partial: 'public/review_comments/index', locals: { review_comments: @review_comments } %>
+      </li>
+    </ul>
+    <hr>
+    <% if user_signed_in? %>
+      <div class="comment_create">
+        <h3 class="text-left">コメントする</h3>
+        <%= render partial: 'public/review_comments/form', locals: { review_comment: @review_comment, review: @review } %>
+      </div>
+    <% end %>
   </div>
 </div>
