@@ -6,13 +6,13 @@ class Public::ReviewCommentsController < ApplicationController
     @review_comment = @review.review_comments.build(review_comment_params)
     @review_comment.user_id = current_user.id
     @review_comment.save
-    render 'public/review_comments/index'
+    render 'review_comments/index'
   end
 
   def destroy
     @review_comment = ReviewComment.find(params[:id])
     @review_comment.destroy
-    render 'public/review_comments/index'
+    render 'review_comments/index'
   end
 
   private
