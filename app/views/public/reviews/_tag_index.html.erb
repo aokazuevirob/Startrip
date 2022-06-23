@@ -1,7 +1,7 @@
 <!--render呼び出し時に「tag_list: @tag_list」を追記-->
 <% tag_list.each do |list| %>
-  <%= list.name %>
-  <%= "(#{list.review.count})" %>
+  <%= link_to list.name,  search_tag_path(tag_id: list.id) %>
+  <%= "(#{list.reviews.count})" %>
 <% end %>
 
 <!--render呼び出し時に「reviews: @reviews」を追記-->
@@ -9,3 +9,4 @@
 <% reviews.each do |review| %>
 <!--配列要素をnameに格納し、「,」で区切る-->
   <i class="fas fa-tag"><%= review.tags.map(&:name).join(',') %></i>
+<% end %>

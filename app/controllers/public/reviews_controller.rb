@@ -13,7 +13,7 @@ class Public::ReviewsController < ApplicationController
     if @review.save
       # save_tagはmodelに定義
       @review.save_tag(tag_list)
-      redirect_to reviews_path, notice: "投稿しました！"
+      redirect_to reviews_path(@review), notice: "投稿しました！"
     else
       render 'new'
     end
@@ -42,10 +42,20 @@ class Public::ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
+    # 入力されたtagを取得
     tag_list = params[:review][:name].split(',')
     if @review.update(review_params)
-      @review.save_tag(tag_list)
-      redirect_to review_path(@review), notice: "編集内容を保存しました"
+      if params[:review][:status] == "公開" || params[:review][:status] == "非公開"
+        # 既に紐づいていたtagを格納、取得して削除
+        @old_relations = ReviewTag.where(review_id: @review.id)
+        @old_relations.each do |relation|
+          relation.delete
+        end
+        @review.save_tag(tag_list)
+        redirect_to review_path(@review), notice: "編集内容を保存しました"
+      else
+        redirect_to reviews_path, notice: "下書きに登録しました"
+      end
     else
       render 'edit'
     end
@@ -55,6 +65,12 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.destroy
     redirect_to reviews_path
+  end
+
+  def search_tag
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @reviews = @tag.reviews
   end
 
   private

@@ -1,6 +1,9 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row">
     <h1 class="font-weight-normal mt-3">投稿一覧</h1>
+  </div>
+  <div class="row">
+    <%= render 'public/reviews/tag_index', tag_list: @tag_list, reviews: @reviews %>
   </div>
 
   <div class="row justify-content-center">

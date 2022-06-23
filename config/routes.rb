@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get "about" => "homes#about"
     get "user/confirm" => "users#confirm"
+    get "search_tag" => "reviews#search_tag"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
     resources :genres, only: [:index]

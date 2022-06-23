@@ -43,3 +43,12 @@ ul {
 .user-info {
   font-size: small;
 }
+
+.card {
+  padding: 0;
+  margin: 0;
+}
+
+.h6 {
+  border-bottom: solid 3px black;
+}

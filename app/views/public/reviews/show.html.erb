@@ -73,7 +73,7 @@
       </div>
       <div class="row">
         <% @review_tags.each do |tag| %>
-          <%= tag.name %><%= "(#{tag.review.count})" %>
+          <%= link_to tag.name, search_tag_path(tag_id: tag.id) %><%= "(#{tag.reviews.count})" %>
         <% end %>
       </div>
 
