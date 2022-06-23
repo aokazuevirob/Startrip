@@ -5,26 +5,5 @@
   <div class="row">
     <%= render 'public/reviews/tag_index', tag_list: @tag_list, reviews: @reviews %>
   </div>
-
-  <div class="row justify-content-center">
-    <% @reviews.each do |review| %>
-    <div class="box">
-      <%= link_to review_path(review) do %>
-      <p class="caption">
-        <%= image_tag review.user.get_user_image(50, 50) %><%= review.user.nickname %>
-      </p>
-      <%= image_tag review.get_travel_image(200, 200) %>
-      <p class="caption"><%= review.travel_country.name %> / <%= review.area %></p>
-      <p class="favorite-btn_<%= review.id %>">
-        <%= render 'public/favorites/btn', review: review %>
-      </p>
-      <% end %>
-      <div class="d-flex tag-name">
-        <i class="fas fa-tag"></i>
-        <!--配列要素をnameに格納し、「,」で区切る-->
-        <%= review.tags.map(&:name).join(',') %>
-      </div>
-    </div>
-    <% end %>
-  </div>
+  <%= render 'public/reviews/index', reviews: @reviews %>
 </div>
