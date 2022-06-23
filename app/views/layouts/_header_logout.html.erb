@@ -1,21 +1,30 @@
 <nav class="navbar navbar-expand-lg">
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="navbar-brand">
-      <div class="py-1">
-        <%= link_to root_path do %>
-          <%= image_tag "logo.png", size: "200x60" %>
-        <% end %>
-      </div>
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png", size: "200x60" %>
+      <% end %>
     </div>
 
     <!--ログアウト時に表示-->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
-        <li class="mx-3"><%= link_to 'About', about_path, class: 'btn btn-outline-secondary nav-link text-dark' %></li>
-        <li class="mx-3"><%= link_to '国名一覧', countries_path, class: 'btn btn-outline-secondary nav-link text-dark' %></li>
-        <li class="mx-3"><%= link_to '新規登録', new_user_registration_path, class: 'btn btn-outline-secondary nav-link text-dark' %></li>
-        <li class="mx-3"><%= link_to 'ログイン', new_user_session_path, class: 'btn btn-outline-secondary nav-link text-dark' %></li>
+        <li class="btn-box mx-1"><%= link_to 'About', about_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>
+        <li class="btn-box mx-1"><%= link_to '国名一覧', countries_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>
+        <li class="btn-box mx-1"><%= link_to '投稿一覧', reviews_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>
+        <div class="dropdown">
+          <button type="button" class="btn btn-outline-success btn-sm nav-link text-green dropdown-toggle" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ログイン方法を選択
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
+            <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "L o g    i n", new_user_session_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "S i g n    U p", new_user_registration_path, class: "dropdown-item" %>
+          </div>
+        </div>
       </ul>
     </div>
 

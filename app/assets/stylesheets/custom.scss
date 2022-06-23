@@ -1,6 +1,48 @@
+:root {
+  --body: #FFFFFF;
+  --header: #EEEEEE;
+  --text-color: #000;
+}
+
 body{
   font-family: "Helvetica", "Montserrat", "Courier New", "Segoe UI", sans-serif;
+  background: var(--body) !important;
+  color: var(--text-color) !important;
 }
+
+header{
+  background: var(--header) !important;
+  border-bottom: solid 1px #000;
+}
+
+.navbar-brand{
+  margin: 0;
+  padding: 0;
+}
+
+.btn-box{
+  width: 100px;
+}
+
+.name-box{
+  margin: 0px 0px 0px 100px;
+}
+
+.dropdown-menu{
+  font-size: 70%;
+}
+
+.dropdown-item{
+  color: #20c997;
+}
+
+.display-1{
+  margin-top: 30px;
+  font-size: 700%;
+}
+
+
+
 
 .bg-teal{
   background-color: #20c997;
@@ -12,7 +54,7 @@ body{
 
 .caption {
   color: black;
-  font-size: 20px;
+  font-size: 15px;
   text-decoration: none;
 }
 
@@ -51,4 +93,8 @@ ul {
 
 .h6 {
   border-bottom: solid 3px black;
+}
+
+.tag-name {
+  font-size: x-small;
 }

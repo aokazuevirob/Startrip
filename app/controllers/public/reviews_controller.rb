@@ -45,14 +45,14 @@ class Public::ReviewsController < ApplicationController
     # 入力されたtagを取得
     tag_list = params[:review][:name].split(',')
     if @review.update(review_params)
-      if params[:review][:status] == "公開" || params[:review][:status] == "非公開"
+      if params[:review][:status] == "published" || params[:review][:status] == "unpublished"
         # 既に紐づいていたtagを格納、取得して削除
         @old_relations = ReviewTag.where(review_id: @review.id)
         @old_relations.each do |relation|
           relation.delete
         end
         @review.save_tag(tag_list)
-        redirect_to review_path(@review), notice: "編集内容を保存しました"
+        redirect_to review_path(@review.id), notice: "編集内容を保存しました"
       else
         redirect_to reviews_path, notice: "下書きに登録しました"
       end

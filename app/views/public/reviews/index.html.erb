@@ -19,6 +19,11 @@
         <%= render 'public/favorites/btn', review: review %>
       </p>
       <% end %>
+      <div class="d-flex tag-name">
+        <i class="fas fa-tag"></i>
+        <!--配列要素をnameに格納し、「,」で区切る-->
+        <%= review.tags.map(&:name).join(',') %>
+      </div>
     </div>
     <% end %>
   </div>

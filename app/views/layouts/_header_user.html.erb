@@ -1,24 +1,22 @@
 <nav class="navbar navbar-expand-lg">
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="navbar-brand">
-      <div class="py-1">
-        <%= link_to root_path do %>
-          <%= image_tag "logo.png", size: "200x60" %>
-        <% end %>
-      </div>
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png", size: "200x60" %>
+      <% end %>
     </div>
 
-    <div class="center">
-      <p>ようこそ、<%= current_user.last_name %>さん！</p>
-    </div>
+      <p class="name-box" style="color: #00CC66;">ログイン中：<%= current_user.nickname %></p>
+
     <!--会員ログイン時に表示-->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
-        <li class="mx-3"><%= link_to 'About', about_path, class: 'btn btn-outline-secondary nav-link text-dark' %></li>
-        <li class="mx-3"><%= link_to 'マイページ', user_path(current_user), class: 'btn btn-outline-secondary nav-link text-dark' %></li>
-        <li class="mx-3"><%= link_to '投稿一覧', reviews_path, class: 'btn btn-outline-secondary nav-link text-dark' %></li>
-        <li class="mx-3"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary nav-link text-dark' %></li>
+        <li class="btn-box mx-1"><%= link_to 'About', about_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>
+        <li class="btn-box mx-1"><%= link_to '国名一覧', countries_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>
+        <li class="btn-box mx-1"><%= link_to '投稿一覧', reviews_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>
+        <li class="btn-box mx-1"><%= link_to 'マイページ', user_path(current_user), class: 'btn btn-outline-success btn-sm nav-link text-green' %></li>
+        <li class="btn-box mx-1"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-success btn-sm nav-link text-green' %></li>
       </ul>
     </div>
 
