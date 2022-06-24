@@ -45,22 +45,26 @@ Rails.application.routes.draw do
       member do
         get "manage"
         get "bookmark"
+        get "quit"
+        patch "out"
       end
       # フォロー/フォロワー一覧
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
 
-    patch "users/withdraw" => "users#withdraw"
-    get "user/quit" => "users#quit"
   end
 
   namespace :admin do
     get "/" => "homes#top"
+    get "search_tag" => "reviews#search_tag"
     resources :countries, only: [:new, :index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :edit, :destroy]
-    resources :users, only: [:index, :show, :edit]
+    resources :reviews, only: [:index, :show, :edit, :update, :destroy] do
+      resources :review_comments, only: [:destroy]
+    end
+    resources :users, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index]
+    resources :maps, only: [:index]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -18,7 +18,7 @@ class Public::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-  
+
   def guest_sign_in
     user = User.guest
     sign_in user
@@ -28,8 +28,8 @@ class Public::SessionsController < Devise::SessionsController
   protected
 
   def user_state
-    # userテーブルからemail情報を確認
-    @user = User.find_by(email: params[:user][:email])
+    # userテーブルからemail情報を確認（.dowmcase => 大文字を小文字に変換）
+    @user = User.find_by(email: params[:user][:email].downcase)
     # 該当レコードがない場合は処理を終了する
     return if !@user
     # passwordが正しいかつ退会ステータスがtrue(退会済)の場合に実行

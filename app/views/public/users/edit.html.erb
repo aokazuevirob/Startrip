@@ -37,7 +37,7 @@
           <td></td>
           <td>
             <%= f.submit "編集内容を保存する", class: "btn btn-success mx-3 px-5" %>
-            <%= link_to '退会する', user_quit_path, class: "btn btn-danger mx-3 px-5" %>
+            <%= link_to '退会する', quit_user_path(@user), class: "btn btn-danger mx-3 px-5" %>
           </td>
         </tr>
       </tbody>

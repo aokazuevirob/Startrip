@@ -1,1 +1,17 @@
-<h1>退会画面</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="text-center">
+        <h3 class="py-3">本当に退会しますか？</h3>
+        <p class="py-5">
+          退会すると会員情報登録や<br>
+          これまでの投稿履歴が閲覧できなくなります。<br>
+          <br>
+          退会する場合は,「退会する」をクリックしてください。
+        </p>
+          <%= link_to "退会しない", user_path(@user), class: "btn btn-info btn-lg px-4 mx-5" %>
+          <%= link_to "退会する", out_user_path, method: :PATCH, class: "btn btn-danger btn-lg px-4 mx-5" %>
+      </div>
+    </div>
+  </div>
+</div>
