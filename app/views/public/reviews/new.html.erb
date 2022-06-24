@@ -43,6 +43,11 @@
       <%= f.text_area :body, :size => "70x5", placeholder:"ご経験された内容を記載ください。" %>
     </div>
 
+    <h4>タグ（「,」で区切ると複数タグを登録できます）</h4>
+    <div class="form-group">
+      <%= f.text_field :name, value: @tag_list, class: "form-control" %>
+    </div>
+
     <h4>出国した国名を選択（任意）</h4>
     <div class="form-group">
       <%= f.country_select :departure, prompt: '!--選択してください--' %>
@@ -64,8 +69,13 @@
     </div>
 
     <h4>写真をアップロード（任意）</h4>
-    <div class="field">
-      <%= f.file_field :travel_images, multiple: true %>
+    <div class="form-group">
+      <%= f.file_field :travel_image, class: "form-control-file travel_image", accept: 'image/*' %>
+    </div>
+
+    <h4>公開範囲を選択</h4>
+    <div class="form-group">
+      <%= f.select :status, [["公開", "published"], ["非公開", "unpublished"], ["下書き", "draft"]], required: true, class: "from-control" %>
     </div>
 
     <div class="row justify-content-center mt-4">

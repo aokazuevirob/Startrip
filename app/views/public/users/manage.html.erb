@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row mt-5">
+    <h3 class="border-bottom border-dark mb-4">非公開 / 下書き一覧</h3>
+  </div>
+
+  <div class="row justify-content-left">
+    <% @reviews.each do |review| %>
+    <div class="card border-dark" style="width: 20rem;">
+      <div class="card-header">
+        <%= link_to user_path(review.user) do %>
+          <%= image_tag review.user.get_user_image(50, 50) %><%= review.user.nickname %>
+        <% end %>
+      </div>
+      <%= link_to review_path(review) do %>
+      <div class="card-img-top text-center">
+        <%= image_tag review.get_travel_image(200, 200) %>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title text-center"><%= review.travel_country.name %> / <%= review.area %></h5>
+        <div class="d-flex pl-5">
+          <% if user_signed_in? %>
+          <p class="favorite-btn_<%= review.id %>">
+            <%= render 'public/favorites/btn', review: review %>
+          </p>
+          <p style="margin-left: 100px;"><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
+          <% end %>
+        </div>
+        <div class="d-flex tag-name pl-5">
+          <i class="fas fa-tag"></i>
+          <!--配列要素をnameに格納し、「,」で区切る-->
+          <%= review.tags.map(&:name).join(',') %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>

@@ -6,6 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+# Adminログイン用
+Admin.create!(
+  email: 'test@test.com',
+  password: 'testadmin'
+  )
+
 nation = Genre.create(name: '国名')
 asia, europe, north_america, south_america, oceania, africa, middle_east = nation.children.create(
   [

@@ -1,3 +1,49 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#tall {
+  height: 600px;
+  position: relative;
+}
+
+.image1 {
+  background-image: url(top-image1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image2 {
+  background-image: url(top-image2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image3 {
+  background-image: url(top-image3.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image4 {
+  background-image: url(top-image4.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.top-text {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+
+}
+
+.display-1{
+  margin-top: 30px;
+  font-size: 700%;
+  font-weight: lighter;
+}

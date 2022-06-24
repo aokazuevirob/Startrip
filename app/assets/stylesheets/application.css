@@ -14,8 +14,9 @@
  *= require_self
  */
 
-.list {
-  margin: 5px;
-  float: left;
-  width: calc(50% - 10px);
-}
+
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+ @import "@fortawesome/fontawesome-free/scss/fontawesome";
+
+

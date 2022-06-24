@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'genres/index'
+  end
   namespace :public do
     get 'genres/index'
   end
@@ -18,28 +21,31 @@ Rails.application.routes.draw do
 
   # ゲスト用
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   root to: "public/homes#top"
 
   scope module: :public do
     get "about" => "homes#about"
-    get "review/confirm" => "reviews#confirm"
     get "user/confirm" => "users#confirm"
+    get "search_tag" => "reviews#search_tag"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
     resources :genres, only: [:index]
 
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-      resources :favorites, only: [:create, :destroy]
-      collection do
-        post "confirm"
-      end
+      resources :review_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
     end
 
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
+      member do
+        get "manage"
+        get "bookmark"
+      end
       # フォロー/フォロワー一覧
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
@@ -52,8 +58,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top"
     resources :countries, only: [:new, :index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :destroy]
+    resources :reviews, only: [:index, :show, :edit, :destroy]
     resources :users, only: [:index, :show, :edit]
+    resources :genres, only: [:index]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

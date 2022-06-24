@@ -1,19 +1,9 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row">
     <h1 class="font-weight-normal mt-3">投稿一覧</h1>
   </div>
-
-  <div class="row justify-content-center">
-    <% @reviews.each do |review| %>
-    <div class="box">
-      <%= link_to review_path(review) do %>
-      <p class="caption">
-        <%= image_tag review.user.get_user_image(50, 50) %><%= review.user.nickname %>
-      </p>
-      <%= image_tag review.get_travel_image(200, 200) %>
-      <p class="caption"><%= review.travel_country.name %> / <%= review.area %></p>
-      <% end %>
-    </div>
-    <% end %>
+  <div class="row">
+    <%= render 'public/reviews/tag_index', tag_list: @tag_list, reviews: @reviews %>
   </div>
+  <%= render 'public/reviews/index', reviews: @reviews %>
 </div>

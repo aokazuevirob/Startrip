@@ -1,32 +1,62 @@
 <div class="container">
-
-  <div class="p-rvwr-cover__image">
+  <div class="row">
+    <div class="main-visual">
     <!--ユーザー背景-->
-    <div class="tbcrop-frame" style="overflow: hidden; position: relative; width: 980px; height: 250px;">
-      <%= image_tag @user.get_user_bg_image(980, 250) %>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row border-bottom border-dark">
 
-    <div class="col-3">
+    <div class="col-2" style="padding: 0;">
       <!--ユーザー画像-->
-      <%= image_tag @user.get_user_image(220, 220) %>
+      <%= image_tag @user.get_user_image(170, 170) %>
     </div>
 
-    <div class="col-9">
+    <div class="col-10">
       <!--ニックネーム、紹介、テーブル-->
-      <div class="nickname">
-        <%= @user.nickname %>
+      <div class="row" style="height: 110px;">
+        <div class="col-7">
+          <div class="nickname">
+            <%= @user.nickname %>
+          </div>
+          <div class="intro">
+            <%= @user.introduction %>
+          </div>
+        </div>
+        <% if @user == current_user %>
+        <div class="col mt-3">
+          <div class="text-right">
+            <%= link_to "新規投稿", new_review_path, class: 'btn btn-outline-primary rounded-pill' %>
+          </div>
+          <div class="dropdown d-md-flex justify-content-md-end mt-2">
+            <button type="button" class="btn btn-outline-success btn-sm nav-link text-green dropdown-toggle" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              登録情報管理
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
+              <%= link_to "登録情報の確認", user_confirm_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "登録情報の編集", edit_user_path, class: "dropdown-item" %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% if user_signed_in? %>
+          <% unless @user == current_user %>
+            <div class="col mt-5">
+              <div class="text-right">
+                <% if current_user.following?(@user) %>
+                  <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: 'btn btn-outline-primary rounded-pill' %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: 'btn btn-outline-primary rounded-pill' %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
-      <div class="intro">
-        <%= @user.introduction %>
-      </div>
-        <p class="text-right mt-1"><%= link_to "情報確認", user_confirm_path, class: "btn btn-info rounded-pill" %></p>
-        <p class="text-right mt-1"><%= link_to "＋", new_review_path, class: "btn btn-primary rounded-circle p-0", style: "width:2rem;height:2rem;" %></p>
 
-      <table class="table table-bordered table-hover">
-        <thead class="bg-light-brown">
+      <table class="table table-bordered text-center">
+        <thead class="bg-light">
           <tr>
             <td>口コミ数</td>
             <td>フォロー</td>
@@ -36,15 +66,16 @@
         <tbody>
           <td>
             <!--口コミ数を表示-->
+            <%= @reviews.count %> 件
           </td>
           <td>
             <%= link_to user_followings_path(@user) do %>
-              <%= @user.followings.count %>
+              <%= @user.followings.count %>　フォロー
             <% end %>
           </td>
           <td>
             <%= link_to user_followers_path(@user) do %>
-              <%= @user.followers.count %>
+              <%= @user.followers.count %>　フォロワー
             <% end %>
           </td>
         </tbody>
@@ -52,10 +83,25 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-5">
     <!--投稿一覧-->
-    <h3>投稿一覧</h3>
-    <%= render 'public/reviews/index', reviews: @reviews %>
+    <h3 class="border-bottom border-dark mb-4">投稿一覧</h3>
+    <% if @user == current_user %>
+    <div class="col">
+      <div class="dropdown d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-outline-success btn-sm nav-link text-green dropdown-toggle" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          投稿表示切り替え
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
+          <%= link_to "ブックマーク一覧", bookmark_user_path, class: "dropdown-item" %>
+        <div class="dropdown-divider"></div>
+          <%= link_to "非公開 / 下書き一覧", manage_user_path(@user), class: "dropdown-item" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
+
+  <%= render 'public/reviews/index', reviews: @reviews %>
 
 </div>

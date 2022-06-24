@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one_attached :user_bg_image
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :review_comments, dependent: :destroy
 
  # フォローした、されたの関係
@@ -39,9 +40,10 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
+    find_or_create_by!(last_name: 'guest', first_name: 'user', nickname: 'ゲスト', email: 'guest@example.com', phone_number: '11111111111', gender: 'no_answer', birth_date: '1995-01-01') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.last_name = "guestuser"
+      user.last_name = "guest"
+      user.first_name = "user"
     end
   end
 
@@ -58,9 +60,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(:last_name, :first_name, :nickname, :phone_number, :gender, :birth_date, :is_deleted, :introduction, :user_image, :user_bg_image)
   end
