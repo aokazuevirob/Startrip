@@ -70,7 +70,7 @@ class Public::ReviewsController < ApplicationController
   def search_tag
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @reviews = @tag.reviews
+    @reviews = @tag.reviews.where(status: :published).order('id DESC')
   end
 
   private

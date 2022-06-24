@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       member do
         get "manage"
+        get "bookmark"
       end
       # フォロー/フォロワー一覧
       get 'followings' => 'relationships#followings', as: 'followings'

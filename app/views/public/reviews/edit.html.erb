@@ -69,12 +69,12 @@
     </div>
 
     <h4>写真をアップロード（任意）</h4>
-    <div class="field">
-      <%= f.file_field :travel_images, multiple: true %>
+    <div class="field mb-3">
+      <%= f.file_field :travel_image, class: "form-control-file travel_image", accept: 'image/*' %>
     </div>
 
+    <h4>公開範囲を選択</h4>
     <div class="form-group">
-      <%= f.label :公開範囲を選択 %>
       <%= f.select :status, [["公開", "published"], ["非公開", "unpublished"], ["下書き", "draft"]], required: true, class: "from-control" %>
     </div>
 

@@ -42,7 +42,7 @@
     <div class="form-group">
       <%= f.text_area :body, :size => "70x5", placeholder:"ご経験された内容を記載ください。" %>
     </div>
-    
+
     <h4>タグ（「,」で区切ると複数タグを登録できます）</h4>
     <div class="form-group">
       <%= f.text_field :name, value: @tag_list, class: "form-control" %>
@@ -70,7 +70,7 @@
 
     <h4>写真をアップロード（任意）</h4>
     <div class="form-group">
-      <%= f.file_field :travel_images, multiple: true %>
+      <%= f.file_field :travel_image, class: "form-control-file travel_image", accept: 'image/*' %>
     </div>
 
     <h4>公開範囲を選択</h4>
