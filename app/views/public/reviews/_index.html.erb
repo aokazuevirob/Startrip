@@ -1,22 +1,32 @@
 <div class="row justify-content-center">
   <% reviews.each do |review| %>
-  <div class="box">
-    <%= link_to review_path(review) do %>
-    <p class="caption">
-      <%= image_tag review.user.get_user_image(50, 50) %><%= review.user.nickname %>
-    </p>
-    <%= image_tag review.get_travel_image(200, 200) %>
-    <p class="caption"><%= review.travel_country.name %> / <%= review.area %></p>
-    <p class="favorite-btn_<%= review.id %>">
-      <%= render 'public/favorites/btn', review: review %>
-    </p>
-    <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
-    <% end %>
-    <div class="d-flex tag-name">
-      <i class="fas fa-tag"></i>
-      <!--配列要素をnameに格納し、「,」で区切る-->
-      <%= review.tags.map(&:name).join(',') %>
+  <div class="card border-success" style="width: 20rem;">
+    <div class="card-header">
+      <%= link_to user_path(review.user) do %>
+        <%= image_tag review.user.get_user_image(50, 50) %><%= review.user.nickname %>
+      <% end %>
     </div>
+    <%= link_to review_path(review) do %>
+    <div class="card-img-top text-center">
+      <%= image_tag review.get_travel_image(200, 200) %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= review.travel_country.name %> / <%= review.area %></h5>
+      <div class="d-flex">
+        <% if user_signed_in? %>
+        <p class="favorite-btn_<%= review.id %>">
+          <%= render 'public/favorites/btn', review: review %>
+        </p>
+        <p style="margin-left: 100px;"><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
+        <% end %>
+      </div>
+      <div class="d-flex tag-name">
+        <i class="fas fa-tag"></i>
+        <!--配列要素をnameに格納し、「,」で区切る-->
+        <%= review.tags.map(&:name).join(',') %>
+      </div>
+    </div>
+    <% end %>
   </div>
   <% end %>
 </div>

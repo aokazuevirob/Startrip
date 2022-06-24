@@ -20,12 +20,14 @@
         <div class="col-md-6 justify-content-center d-block">
           <%= image_tag @review.get_travel_image(300, 300) %>
           <div class="d-flex">
+          <% if user_signed_in? %>
           <div class="favorite-btn_<%= @review.id %>">
             <%= render 'public/favorites/btn', review: @review %>
           </div>
           <div id="bookmark_button_<%= @review.id %>" style="margin-left: 20px;">
             <%= render 'public/bookmarks/mark', review: @review %>
           </div>
+          <% end %>
           </div>
         </div>
 
@@ -84,14 +86,14 @@
               <h4 class="text-left mini-title">コメント</h4>
             </li>
             <li id="comments_area">
-              <%= render partial: 'public/review_comments/index', locals: { review_comments: @review_comments } %>
+              <%= render 'public/review_comments/index', review: @review %>
             </li>
           </ul>
           <hr>
           <% if user_signed_in? %>
           <div class="comment-create">
             <h5 class="text-left">コメントする</h5>
-            <%= render partial: 'public/review_comments/form', locals: { review_comment: @review_comment, review: @review } %>
+            <%= render 'public/review_comments/form', review_comment: @review_comment, review: @review %>
           </div>
           <% end %>
         </div>

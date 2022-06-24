@@ -18,7 +18,7 @@
           ログイン方法を選択
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
-            <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, class: "dropdown-item" %>
+            <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <%= link_to "L o g    i n", new_user_session_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
