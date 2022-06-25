@@ -8,7 +8,6 @@ class Public::ReviewCommentsController < ApplicationController
     @review_comment.review_id = @review.id
     @review_comment.save
     @review_comments = @review.review_comments.order(created_at: :desc)
-    #@review_comments = @review.review_comments
   end
 
   def destroy
