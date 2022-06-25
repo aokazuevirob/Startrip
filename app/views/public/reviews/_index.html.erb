@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
       <h5 class="card-title text-center"><%= review.travel_country.name %> / <%= review.area %></h5>
-      <div class="d-flex pl-5">
+      <div class="d-flex pl-5" style="height: 30px;">
         <% if user_signed_in? %>
         <p class="favorite-btn_<%= review.id %>">
           <%= render 'public/favorites/btn', review: review %>
