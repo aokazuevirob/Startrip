@@ -7,14 +7,15 @@ class Public::ReviewCommentsController < ApplicationController
     @review_comment.user_id = current_user.id
     @review_comment.review_id = @review.id
     @review_comment.save
-    render :create
+    @review_comments = @review.review_comments.order(created_at: :desc)
+    #@review_comments = @review.review_comments
   end
 
   def destroy
     @review_comment = ReviewComment.find_by(id: params[:id], review_id: params[:review_id])
     @review_comment.destroy
     @review = Review.find(params[:review_id])
-    render :destroy
+    @review_comments = @review.review_comments.order(created_at: :desc)
   end
 
   private

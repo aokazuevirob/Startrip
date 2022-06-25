@@ -1,0 +1,31 @@
+
+  <table class="table table-hover table-inverse my-5 text-center">
+    <thead class="table-info">
+      <tr>
+        <th></th>
+        <th>ユーザー名</th>
+        <th>レビュー数</th>
+        <th>フォロー数</th>
+        <th>フォロワー数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_user_image(60, 60) %></td>
+        <td>
+          <%= link_to user_path(user.id) do %>
+            <%= user.nickname %>
+          <% end %>
+        </td>
+        <td><%= user.reviews.count %> 件</td>
+        <td><%= user.followings.count %> フォロー</td>
+        <td><%= user.followers.count %> フォロワー</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <!--<div class="paginate d-flex justify-content-center">-->
+    <%#= paginate @users %>
+  <!--</div>-->

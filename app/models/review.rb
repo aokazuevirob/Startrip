@@ -62,4 +62,14 @@ class Review < ApplicationRecord
     end
   end
 
+  def self.looks(search, word)
+    if search == "partial_match"
+      @review = Review.where("country_code LIKE?","%#{word}%").or(Review.where("area LIKE?", "%#{word}%").or(Review.where("title LIKE?", "%#{word}%").or(Review.where("body LIKE?", "%#{word}%"))))
+    elsif search == "perfect_match"
+      @review = Review.where("country_code LIKE?", "#{word}").or(Review.where("area LIKE?", "#{word}").or(Review.where("title LIKE?", "#{word}").or(Review.where("body LIKE?", "#{word}"))))
+    else
+      @review = Review.all
+    end
+  end
+
 end

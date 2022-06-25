@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'genres/index'
-  end
-  namespace :public do
-    get 'genres/index'
-  end
  # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -25,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   root to: "public/homes#top"
+  get "search" => "searches#search"
 
   scope module: :public do
     get "about" => "homes#about"
@@ -32,7 +27,7 @@ Rails.application.routes.draw do
     get "search_tag" => "reviews#search_tag"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
-    resources :genres, only: [:index]
+    resources :genres, only: [:index, :show]
 
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :review_comments, only: [:create, :destroy]

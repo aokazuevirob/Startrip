@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="row">
-    <h1 class="font-weight-normal mt-3">投稿一覧</h1>
+  <div class="row border-bottom border-dark">
+    <h3 class="font-weight-normal mt-3">投稿一覧</h3>
   </div>
-  <div class="row">
+  <div class="row mt-2 mb-4">
     <%= render 'public/reviews/tag_index', tag_list: @tag_list, reviews: @reviews %>
   </div>
   <%= render 'public/reviews/index', reviews: @reviews %>

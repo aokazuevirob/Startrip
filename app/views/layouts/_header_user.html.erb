@@ -12,6 +12,16 @@
     <!--会員ログイン時に表示-->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
+        <div class="dropdown">
+          <button type="button" class="btn btn-outline-success btn-sm nav-link text-green dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search-plus"></i>検索
+          </button>
+          <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
+            <h6 class="dropdown-header">検索フォーム</h6>
+            <div class="dropdown-divider"></div>
+            <%= render 'layouts/search' %>
+          </div>
+        </div>
         <li class="btn-box mx-1"><%= link_to 'About', about_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>
         <li class="btn-box mx-1"><%= link_to '国名一覧', genres_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>
         <li class="btn-box mx-1"><%= link_to '投稿一覧', reviews_path, class: 'btn btn-outline-dark btn-sm nav-link' %></li>

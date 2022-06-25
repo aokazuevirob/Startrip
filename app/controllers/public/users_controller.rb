@@ -14,7 +14,6 @@ class Public::UsersController < ApplicationController
   # bookmark一覧の表示
   def bookmark
     @bookmarks = Bookmark.where(user_id: current_user.id)
-    @review = Review.find(params[:id])
   end
 
 # 投稿範囲の指定
