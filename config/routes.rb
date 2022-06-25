@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'genres/index'
-  end
-  namespace :public do
-    get 'genres/index'
-  end
  # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -25,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   root to: "public/homes#top"
+  get "search" => "searches#search"
 
   scope module: :public do
     get "about" => "homes#about"
@@ -32,7 +27,7 @@ Rails.application.routes.draw do
     get "search_tag" => "reviews#search_tag"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
-    resources :genres, only: [:index]
+    resources :genres, only: [:index, :show]
 
     resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :review_comments, only: [:create, :destroy]
@@ -45,22 +40,26 @@ Rails.application.routes.draw do
       member do
         get "manage"
         get "bookmark"
+        get "quit"
+        patch "out"
       end
       # フォロー/フォロワー一覧
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
 
-    patch "users/withdraw" => "users#withdraw"
-    get "user/quit" => "users#quit"
   end
 
   namespace :admin do
     get "/" => "homes#top"
+    get "search_tag" => "reviews#search_tag"
     resources :countries, only: [:new, :index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :edit, :destroy]
-    resources :users, only: [:index, :show, :edit]
+    resources :reviews, only: [:index, :show, :edit, :update, :destroy] do
+      resources :review_comments, only: [:destroy]
+    end
+    resources :users, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index]
+    resources :maps, only: [:index]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

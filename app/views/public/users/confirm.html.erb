@@ -1,8 +1,9 @@
 <div class="container">
-  <h3 class="bg-secondary text-light d-inline-block px-4 ml-5">マイページ</h3>
-  <div class="justify-content-center row my-2">
-    <h4 class="col-5">登録情報</h4>
+  <h3 class="bg-secondary text-light d-inline-block px-4 ml-5">登録情報</h3>
+  <div class="row my-2">
+    <div class="col mr-4" style="text-align: right;">
       <%= link_to "編集する", edit_user_path(@user), class: "btn btn-success mx-5 rounded-pill" %>
+    </div>
   </div>
 
   <div class="justify-content-center row">
@@ -30,6 +31,14 @@
       <tr>
         <th class="bg-light">自己紹介</th>
         <td><%= @user.introduction %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">会員ステータス</th>
+          <% if @user.is_deleted == true %>
+            <td class="text-danger">退会</td>
+          <% else %>
+            <td class="text-success">有効</td>
+          <% end %>
       </tr>
     </table>
   </div>

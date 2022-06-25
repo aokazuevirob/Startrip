@@ -1,0 +1,87 @@
+<div class="container">
+  <h3 class="bg-secondary text-white d-inline-block px-4 ml-5">投稿内容編集</h3>
+  <%= render 'layouts/errors', obj: @review %>
+
+  <div class="container my-4">
+    <%= form_with model: @review, local:true do |f| %>
+    <h4>ご自身の訪れた国名を選択（必須）</h4>
+    <div class="form-group">
+      <%= f.country_select :country_code %>
+    </div>
+
+    <h4>ご自身の訪れた地域を入力（必須）</h4>
+    <div class="form-group">
+      <%= f.text_area :area %>
+    </div>
+
+    <h4>本経験の評価（必須）</h4>
+    <div class="form-group" id="rating-form">
+      <%= f.hidden_field :rate, id: :review_star %>
+    </div>
+
+    <script>
+    $(document).on('turbolinks:load', function() {
+      $('#rating-form').empty();
+      $('#rating-form').raty({
+        size: 36,
+        starOff: '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'review[rate]',
+        half: true,
+      });
+    })
+    </script>
+
+    <h4>タイトル</h4>
+    <div class="form-group">
+      <%= f.text_area :title, :size => "70x5" %>
+    </div>
+
+    <h4>口コミの入力（必須）</h4>
+    <div class="form-group">
+      <%= f.text_area :body, :size => "70x5" %>
+    </div>
+
+    <h4>タグ（「,」で区切ると複数タグを登録できます）</h4>
+    <div class="form-group">
+      <%= f.text_field :name, value: @tag_list, class: "form-control" %>
+    </div>
+
+    <h4>出国した国名を選択（任意）</h4>
+    <div class="form-group">
+      <%= f.country_select :departure %>
+    </div>
+
+    <h4>往復の移動費用（任意）</h4>
+    <div class="form-group">
+      <%= f.text_field :travel_cost %>円
+    </div>
+
+    <h4>宿泊費用（任意）</h4>
+    <div class="form-group">
+      <%= f.text_field :accommodation_fee %>円
+    </div>
+
+    <h4>宿泊日数（任意）</h4>
+    <div class="form-group">
+      <%= f.select :night, Review.nights.keys.map {|k| [I18n.t("enums.review.night.#{k}"), k]} %>
+    </div>
+
+    <h4>写真をアップロード（任意）</h4>
+    <div class="field mb-3">
+      <%= f.file_field :travel_image, class: "form-control-file travel_image", accept: 'image/*' %>
+    </div>
+
+    <h4>公開範囲を選択</h4>
+    <div class="form-group">
+      <%= f.select :status, [["公開", "published"], ["非公開", "unpublished"], ["下書き", "draft"]], required: true, class: "from-control" %>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+      <%= f.submit "投稿する", class: "btn btn-success mx-2 px-5" %>
+    </div>
+    <% end %>
+  </div>
+
+</div>

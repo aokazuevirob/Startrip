@@ -1,0 +1,10 @@
+<div class="container">
+  <h5><%= @tag.name %>の投稿一覧</h5>
+
+  <% @tag_list.each do |list| %>
+    <%= link_to list.name, admin_search_tag_path(tag_id: list.id) %>
+    <%="(#{list.reviews.count})" %>
+  <% end %>
+
+  <%= render 'admin/reviews/index', reviews: @reviews %>
+</div>

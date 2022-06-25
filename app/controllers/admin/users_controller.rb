@@ -7,6 +7,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @reviews = @user.reviews.where(status: :published).order("created_at DESC")
   end
 
   def edit
@@ -25,7 +26,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :nickname, :email, :phone_number, :gender, :birth_date, :is_delete, :user_image)
+    params.require(:user).permit(:last_name, :first_name, :nickname, :introduction, :email, :phone_number, :gender, :birth_date, :user_image, :is_deleted)
   end
 
 end

@@ -11,7 +11,7 @@
       <% @genres.each do |genre| %>
       <tr class="bg-light-brown">
         <td style="border:none;">
-          <%= link_to genre.name, search_items_path(genre.id), method: :get,class: "text-dark" %>
+          <%= link_to genre.name, search_items_path(genre.id), method: :get, class: "text-dark" %>
         </td>
       </tr>
       <% end %>

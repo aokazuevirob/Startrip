@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @countries = Country.order('id DESC').limit(4)
+    @reviews = Review.where(status: :published).order('id DESC')
   end
 
   def about

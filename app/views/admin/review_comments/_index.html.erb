@@ -1,20 +1,20 @@
 <!--新規コメント3件を取得する-->
-<% review_comments.each do |review_comment| %>
+<%= review.review_comments.count %>件コメント
+<h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る>></h6>
+<% review.review_comments.each do |review_comment| %>
   <%# unless review_comment.id.nil? %>
   	<li class="comment-container">
 		<div class="comment-box">
 			<div class="comment-avatar">
 				<%= image_tag review_comment.user.get_user_image(40, 40), class:"comment-image" %>
-				<%= link_to "#{review_comment.user.nickname}", user_path(review_comment.user.id) %>
+				<%= link_to "#{review_comment.user.nickname}", admin_user_path(review_comment.user.id) %>
 			</div>
 			<div class="comment-text">
 			    <div class="comment-entry">
   				    <%= review_comment.comment %>
-  				    <% if review_comment.user == current_user %>
-			      		<%= link_to review_review_comment_path(review_comment.review_id, review_comment.id), method: :delete, remote: true, class: "review_comment_destroy" do %>
+			      		<%= link_to admin_review_review_comment_path(review_comment.review_id, review_comment.id), method: :delete, remote: true, class: "review_comment_destroy" do %>
 			      			<i class="fas fa-trash fa-pull-right" style="color: black;"></i>
 			      		<% end %>
-			    	<% end %>
   				</div>
 				<p class="comment-date text-right">
 				      <%= review_comment.created_at.strftime('%Y/%m/%d %H:%M') %>

@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
+  before_action :authenticate_user!, except: [:show]
 
   def show
     @user = User.find(params[:id])
@@ -13,7 +14,6 @@ class Public::UsersController < ApplicationController
   # bookmark一覧の表示
   def bookmark
     @bookmarks = Bookmark.where(user_id: current_user.id)
-    @review = Review.find(params[:id])
   end
 
 # 投稿範囲の指定
@@ -29,16 +29,27 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "登録情報の変更を保存しました"
     else
       render 'edit'
     end
   end
 
+  def quit
+    @user = current_user
+  end
+
+  def out
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :nickname, :introduction, :email, :phone_number, :gender, :birth_date, :user_image, :user_bg_image, :is_delete)
+    params.require(:user).permit(:last_name, :first_name, :nickname, :introduction, :email, :phone_number, :gender, :birth_date, :user_image, :user_bg_image, :is_deleted)
   end
 
   def ensure_guest_user
