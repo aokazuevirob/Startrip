@@ -1,5 +1,7 @@
 <div class="container">
-  <h3 class="mini-title">会員一覧</h3>
+  <div class="row border-bottom border-dark">
+    <h3 class="mini-title">会員一覧</h3>
+  </div>
 
   <table class="table table-hover table-inverse my-5">
     <thead class="table-info">
@@ -30,7 +32,7 @@
     </tbody>
   </table>
 
-  <!--<div class="paginate d-flex justify-content-center">-->
-    <%#= paginate @users %>
-  <!--</div>-->
+  <div class="paginate d-flex justify-content-center">
+    <%= paginate @users %>
+  </div>
 </div>

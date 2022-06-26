@@ -1,48 +1,67 @@
 <div class="container">
-  <h3 class"mini-title"><%= @user.last_name %><%= @user.first_name %>さんの会員詳細</h3>
+  <div class="row">
+    <div class="main-visual">
+    <!--ユーザー背景-->
+    </div>
+  </div>
 
-  <div class="row justify-content-center">
-    <div class="col-8 offset-2">
-      <table class="table my-5">
-        <tr>
-          <td>会員ID</td>
-          <td><%= @user.id %></td>
-        </tr>
-        <tr>
-          <td>氏名</td>
-          <td><%= @user.last_name %><%= @user.first_name %></td>
-        </tr>
-        <tr>
-          <td>ニックネーム</td>
-          <td><%= @user.nickname %></td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= @user.email %></td>
-        </tr>
-        <tr>
-          <td>電話番号</td>
-          <td><%= @user.phone_number %></td>
-        </tr>
-        <tr>
-          <td>生年月日</td>
-          <td><%= @user.birth_date %></td>
-        </tr>
-        <tr>
-          <td>会員ステータス</td>
-          <% if @user.is_deleted == true %>
-            <td>退会</td>
-          <% else %>
-            <td>有効</td>
-          <% end %>
-        </tr>
-        <tr>
-          <td></td>
+  <div class="row border-bottom border-dark">
+
+    <div class="col-2" style="padding: 0;">
+      <!--ユーザー画像-->
+      <%= image_tag @user.get_user_image(170, 170) %>
+    </div>
+
+    <div class="col-10">
+      <!--ニックネーム、紹介、テーブル-->
+      <div class="row" style="height: 110px;">
+        <div class="col-7">
+          <div class="nickname">
+            <%= @user.nickname %>
+          </div>
+          <div class="intro">
+            <%= @user.introduction %>
+          </div>
+        </div>
+        <div class="col mt-3">
+          <div class="dropdown d-md-flex justify-content-md-end mt-2">
+            <button type="button" class="btn btn-outline-success btn-sm nav-link text-green dropdown-toggle" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              登録情報管理
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
+              <%= link_to "登録情報の確認", confirm_admin_user_path(@user), class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "登録情報の編集", edit_admin_user_path(@user), class: "dropdown-item" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-bordered text-center">
+        <thead class="bg-light">
+          <tr>
+            <td>口コミ数</td>
+            <td>フォロー</td>
+            <td>フォロワー</td>
+          </tr>
+        </thead>
+        <tbody>
           <td>
-            <%= link_to "編集する", edit_admin_user_path(@user.id), class: "btn btn-success mr-3" %>
+            <!--口コミ数を表示-->
+            <%= @reviews.count %> 件
           </td>
-        </tr>
+          <td><%= @user.followings.count %>　フォロー</td>
+          <td><%= @user.followers.count %>　フォロワー</td>
+        </tbody>
       </table>
     </div>
   </div>
+
+  <div class="row mt-5">
+    <!--投稿一覧-->
+    <h3 class="border-bottom border-dark mb-4">投稿一覧</h3>
+  </div>
+
+  <%= render 'admin/reviews/index', reviews: @reviews %>
+
 </div>

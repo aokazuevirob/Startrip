@@ -67,22 +67,24 @@
         </div>
       </div>
 
-      <div class="row">
+      <h5 class="border-bottom border-dark">タイトル</h5>
+      <div class="row review-title">
         <%= @review.title %>
       </div>
-      <div class="row">
+      <h5 class="border-bottom border-dark">レビュー内容</h5>
+      <div class="row review-body">
         <%= @review.body %>
       </div>
-      <div class="row">
+      <div class="row ml-2 border-bottom border-dark">
         <% @review_tags.each do |tag| %>
           <%= link_to tag.name, search_tag_path(tag_id: tag.id) %><%= "(#{tag.reviews.count})" %>
         <% end %>
       </div>
 
-      <div class="row">
+      <div class="row mt-3">
         <div class="col">
           <h4 class="text-left mini-title">コメント</h4>
-          <p><span id="comments-count"><%= @review_comments.count %></span>件コメント</p>
+          <p><span id="comments-count"><%= @review_comments.count %></span>件のコメント</p>
           <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る>></h6>
           <ul id="comments_area">
             <%= render 'public/review_comments/index', review_comments: @review_comments %>

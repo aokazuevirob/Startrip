@@ -20,7 +20,7 @@
         <div class="d-flex pl-5">
           <% if user_signed_in? %>
           <p class="favorite-btn_<%= bookmark.review.id %>">
-            <%= render 'public/favorites/btn', review: @review %>
+            <%= render 'public/favorites/btn', review: bookmark.review %>
           </p>
           <p style="margin-left: 100px;"><%= link_to "#{bookmark.review.review_comments.count} コメント", review_path(bookmark.review.id) %></p>
           <% end %>
