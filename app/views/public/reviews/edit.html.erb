@@ -1,87 +1,170 @@
 <div class="container">
-  <h3 class="bg-secondary text-white d-inline-block px-4 ml-5">投稿内容編集</h3>
   <%= render 'layouts/errors', obj: @review %>
-
-  <div class="container my-4">
-    <%= form_with model: @review, local:true do |f| %>
-    <h4>ご自身の訪れた国名を選択（必須）</h4>
-    <div class="form-group">
-      <%= f.country_select :country_code %>
-    </div>
-
-    <h4>ご自身の訪れた地域を入力（必須）</h4>
-    <div class="form-group">
-      <%= f.text_area :area %>
-    </div>
-
-    <h4>本経験の評価（必須）</h4>
-    <div class="form-group" id="rating-form">
-      <%= f.hidden_field :rate, id: :review_star %>
-    </div>
-
-    <script>
-    $(document).on('turbolinks:load', function() {
-      $('#rating-form').empty();
-      $('#rating-form').raty({
-        size: 36,
-        starOff: '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        scoreName: 'review[rate]',
-        half: true,
-      });
-    })
-    </script>
-
-    <h4>タイトル</h4>
-    <div class="form-group">
-      <%= f.text_area :title, :size => "70x5" %>
-    </div>
-
-    <h4>口コミの入力（必須）</h4>
-    <div class="form-group">
-      <%= f.text_area :body, :size => "70x5" %>
-    </div>
-
-    <h4>タグ（「,」で区切ると複数タグを登録できます）</h4>
-    <div class="form-group">
-      <%= f.text_field :name, value: @tag_list, class: "form-control" %>
-    </div>
-
-    <h4>出国した国名を選択（任意）</h4>
-    <div class="form-group">
-      <%= f.country_select :departure %>
-    </div>
-
-    <h4>往復の移動費用（任意）</h4>
-    <div class="form-group">
-      <%= f.text_field :travel_cost %>円
-    </div>
-
-    <h4>宿泊費用（任意）</h4>
-    <div class="form-group">
-      <%= f.text_field :accommodation_fee %>円
-    </div>
-
-    <h4>宿泊日数（任意）</h4>
-    <div class="form-group">
-      <%= f.select :night, Review.nights.keys.map {|k| [I18n.t("enums.review.night.#{k}"), k]} %>
-    </div>
-
-    <h4>写真をアップロード（任意）</h4>
-    <div class="field mb-3">
-      <%= f.file_field :travel_image, class: "form-control-file travel_image", accept: 'image/*' %>
-    </div>
-
-    <h4>公開範囲を選択</h4>
-    <div class="form-group">
-      <%= f.select :status, [["公開", "published"], ["非公開", "unpublished"], ["下書き", "draft"]], required: true, class: "from-control" %>
-    </div>
-
-    <div class="row justify-content-center mt-4">
-      <%= f.submit "投稿する", class: "btn btn-success mx-2 px-5" %>
-    </div>
-    <% end %>
+  <div class="row">
+    <h3 class="bg-secondary text-white d-inline-block px-4 ml-3">投稿内容編集</h3>
   </div>
 
+  <div class="row">
+
+    <div class="col-5">
+      <h5 class="mt-2"><i class="fas fa-map-marked-alt"></i>訪問先を入力</h5>
+      <input id="address" type="textbox" value="GeekSalon">
+      <input type="button" value="検索" onclick="codeAddress()">
+      <p style="font-size: 12px;">マーカーをドラック＆ドロップで位置の調整ができます。</p>
+      <div id='map'></div>
+    </div>
+
+    <style>
+    #map {
+      height: 400px;
+      width: 400px;
+    }
+    </style>
+
+    <div class="col-5 offset-1">
+      <%= form_with model: @review, local:true do |f| %>
+      <h7>ご自身の訪れた国名を選択（必須）</h7>
+      <div class="form-group">
+        <%= f.country_select :country_code, prompt: '!--選択してください--' %>
+      </div>
+
+      <h7>ご自身の訪れた地域を入力（必須）</h7>
+      <div class="form-group">
+        <%= f.text_field :area, :size => "39x3", "palceholder" => "!--入力してください--" %>
+      </div>
+
+      <h7>緯度 / 経度（検索時に自動入力）</h7>
+      <div class="form-group">
+        <%= f.label :lat,"緯度" %>
+        <%= f.text_field :lat,:value =>"緯度", id: :lat %><br>
+        <%= f.label :lng,"経度" %>
+        <%= f.text_field :lng,:value =>"経度", id: :lng %>
+      </div>
+
+      <h7>本経験の評価（必須）</h7>
+      <div class="form-group" id="rating-form">
+        <%= f.hidden_field :rate, id: :review_star %>
+      </div>
+
+      <script>
+      $(document).on('turbolinks:load', function() {
+        $('#rating-form').empty();
+        $('#rating-form').raty({
+          size: 36,
+          starOff: '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[rate]',
+          half: true,
+        });
+      })
+      </script>
+
+      <h7>タイトル</h7>
+      <div class="form-group">
+        <%= f.text_area :title, :size => "50x5", placeholder:"タイトルを入力" %>
+      </div>
+
+      <h7>レビュー内容の入力（必須）</h7>
+      <div class="form-group">
+        <%= f.text_area :body, :size => "50x5", placeholder:"ご経験された内容を記載ください。" %>
+      </div>
+
+      <h7>タグ（「,」で区切ると複数タグを登録できます）</h7>
+      <div class="form-group">
+        <%= f.text_field :name, :size => "39x3", value: @tag_list %>
+      </div>
+
+      <h7>出国した国名を選択（任意）</h7>
+      <div class="form-group">
+        <%= f.country_select :departure, prompt: '!--選択してください--' %>
+      </div>
+
+      <h7>往復の移動費用（任意）</h7>
+      <div class="form-group">
+        <%= f.text_field :travel_cost %>円
+      </div>
+
+      <h7>宿泊費用（必須）</h7>
+      <div class="form-group">
+        <%= f.text_field :accommodation_fee %>円
+      </div>
+
+      <h7>宿泊日数（必須）</h7>
+      <div class="form-group">
+        <%= f.select :night, Review.nights.keys.map {|k| [I18n.t("enums.review.night.#{k}"), k]}, { include_blank: '!--選択してください--'} %>
+      </div>
+
+      <h7>写真をアップロード（任意）</h7>
+      <div class="form-group">
+        <%= f.file_field :travel_image, class: "form-control-file travel_image", accept: 'image/*' %>
+      </div>
+
+      <h7>公開範囲を選択</h7>
+      <div class="form-group">
+        <%= f.select :status, [["公開", "published"], ["非公開", "unpublished"], ["下書き", "draft"]], required: true, class: "from-control" %>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <%= f.submit "投稿する", class: "btn btn-success mx-2 px-5" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: 35.6803997, lng:139.7690174},  //東京
+    zoom: 8,
+
+  });
+}
+
+//検索後のマップ作成
+let geocoder
+let aft
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+        //マーカーが複数できないようにする
+        if (aft == true){
+            marker.setMap(null);
+        }
+
+        //新しくマーカーを作成する
+        map.setCenter(results[0].geometry.location);
+            marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            draggable: true // ドラッグ可能にする
+        });
+
+        //二度目以降か判断
+        aft = true
+
+        //検索した時に緯度経度を入力する
+        document.getElementById('lat').value = results[0].geometry.location.lat();
+        document.getElementById('lng').value = results[0].geometry.location.lng();
+
+        // マーカーのドロップ（ドラッグ終了）時のイベント
+        google.maps.event.addListener( marker, 'dragend', function(ev){
+            // イベントの引数evの、プロパティ.latLngが緯度経度
+            document.getElementById('lat').value = ev.latLng.lat();
+            document.getElementById('lng').value = ev.latLng.lng();
+        });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY']%>&callback=initMap" async defer></script>

@@ -57,7 +57,11 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index, :show, :edit, :update, :destroy] do
       resources :review_comments, only: [:destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        get 'confirm'
+      end
+    end
     resources :genres, only: [:index]
     resources :maps, only: [:index]
   end

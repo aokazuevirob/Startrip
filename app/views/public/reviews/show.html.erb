@@ -1,14 +1,14 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-md-3 user-info">
         <%= render 'public/users/info', user: @user, users: @users %>
     </div>
 
     <div class="col-md-9">
       <div class="row">
-        <h4 class="font-wight-normal">投稿詳細</h4>
+        <h4 class="font-wight-normal ml-2">投稿詳細</h4>
         <h7 class="offset-1">投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></h7>
-        <p class="text-right offset-2">
+        <p class="text-right offset-3">
           <% if @review.user == current_user %>
             <%= link_to '編集する', edit_review_path(@review), class: "btn btn-sm btn-info edit_review_#{@review.id}" %>
             <%= link_to '削除する', @review, method: :delete, data: {confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger destroy_review_#{@review.id}" %>
@@ -67,25 +67,27 @@
         </div>
       </div>
 
-      <div class="row">
+      <h5 class="border-bottom border-dark">タイトル</h5>
+      <div class="row review-title">
         <%= @review.title %>
       </div>
-      <div class="row">
+      <h5 class="border-bottom border-dark">レビュー内容</h5>
+      <div class="row review-body">
         <%= @review.body %>
       </div>
-      <div class="row">
+      <div class="row ml-2 border-bottom border-dark">
         <% @review_tags.each do |tag| %>
           <%= link_to tag.name, search_tag_path(tag_id: tag.id) %><%= "(#{tag.reviews.count})" %>
         <% end %>
       </div>
 
-      <div class="row">
+      <div class="row mt-3">
         <div class="col">
           <h4 class="text-left mini-title">コメント</h4>
-          <p><span id="comments-count"><%= @review_comments.count %></span>件コメント</p>
+          <p><span id="comments-count"><%= @review_comments.count %></span>件のコメント</p>
           <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る>></h6>
           <ul id="comments_area">
-              <%= render 'public/review_comments/index', review_comments: @review_comments %>
+            <%= render 'public/review_comments/index', review_comments: @review_comments %>
           </ul>
           <hr>
           <% if user_signed_in? %>

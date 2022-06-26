@@ -11,11 +11,25 @@ body{
   font-family: "Helvetica", "Montserrat", "Courier New", "Segoe UI", sans-serif;
   background: var(--body) !important;
   color: var(--text-color) !important;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
 }
 
 header{
   background: var(--header) !important;
   border-bottom: solid 1px #000;
+}
+
+main{
+  flex: 1;
+}
+
+footer{
+  text-align: center;
+  margin-bottom: 10px;
+  height: 20px;
+  border-top: solid 1px #000;
 }
 
 .navbar-brand{
@@ -39,6 +53,15 @@ header{
   color: #20c997;
 }
 
+.diagonal {
+  background-size: 20px 20px;
+  background-image: repeating-linear-gradient(45deg, #32cd32 0, #32cd32 2px, #98fb98 0, #98fb98 50%);
+}
+
+.trans{
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
 .main-visual {
   width: 100%;
   height: 200px;
@@ -54,11 +77,49 @@ header{
   padding: 0.5rem;
 }
 
+.card-img-top{
+  height: 200px;
+}
+
 .card-title{
   margin-bottom: 0;
 }
 
+.tag-name {
+  font-size: 15px;
+}
 
+#tall{position: relative;}
+.top-text{
+  position: absolute;
+  top: 55%;left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 150;
+  color: #fff;
+  text-shadow:
+    0 1px #bbb,
+    1px 2px #bbb,
+    2px 3px #bbb,
+    3px 4px #bbb,
+    4px 5px #bbb,
+    5px 10px 8px #000000;
+  -webkit-text-stroke: 1px #000;
+  text-stroke: 1px #000;
+  img{width: 100%;}
+  margin: 0　10px;padding: 0;
+}
+
+.review-title{
+  height: 50px;
+  margin-left: 30px;
+}
+
+.review-body{
+  height: 150px;
+  margin-left: 30px;
+}
 
 
 
@@ -98,6 +159,4 @@ ul {
   border-bottom: solid 3px black;
 }
 
-.tag-name {
-  font-size: small;
-}
+

@@ -2,7 +2,11 @@
       <tr><%= image_tag user.get_user_image(100, 100) %></tr>
       <tr>
 	      <th>nickname</th>
-	      <th><%= user.nickname %></th>
+	      <th>
+	        <%= link_to admin_user_path(user.id) do %>
+	          <%= user.nickname %>
+	        <% end %>
+	      </th>
       </tr>
       <tr>
 	      <th>introduction</th>

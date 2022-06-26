@@ -1,4 +1,29 @@
   ja:
+    activerecord:
+      user:
+        last_name: "姓"
+        first_name: "名"
+        nickname: "ニックネーム"
+        phone_number: "電話番号"
+        gender: "性別"
+        birth_date: "生年月日"
+        is_deleted: "会員ステータス"
+        introduction: "自己紹介"
+      review:
+        country_code: "訪問した国"
+        departure: "出国した国"
+        area: "訪問した地域"
+        rate: "評価"
+        title: "タイトル"
+        body: "レビュー内容"
+        travel_cost: "往復移動費用"
+        accommodation_fee: "宿泊費用"
+        night: "滞在日数"
+        lat: "緯度"
+        lng: "経度"
+      review_comment:
+        comment: "コメント"
+
     enums:
       user:
         gender:
@@ -8,10 +33,15 @@
 
       review:
         night:
+          day_trip: "日帰り"
           one_night: "1泊"
-          two_night: "2泊"
-          three_night: "3泊"
-          four_night: "4泊"
-          five_night: "5泊"
-          six_night: "6泊"
-          seven_night: "7泊以上"
+          two_nights: "2泊"
+          three_nights: "3泊"
+          four_nights: "4泊"
+          five_nights: "5泊"
+          six_nights: "6泊"
+          seven_nights: "7泊以上"
+          two_weeks: "2週間未満"
+          three_weeks: "3週間未満"
+          less_month: "1ヶ月未満"
+          more_month: "1ヶ月以上"

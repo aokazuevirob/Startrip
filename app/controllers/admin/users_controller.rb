@@ -1,13 +1,16 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = User.all
-    # ページネーション追加後に変更
-    # @users = User.all.page(params[:page]).per(6)
+    # ページネーション追加
+    @users = User.all.page(params[:page]).per(8)
   end
 
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.where(status: :published).order("created_at DESC")
+  end
+
+  def confirm
+    @user = User.find(params[:id])
   end
 
   def edit

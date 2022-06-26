@@ -1,10 +1,9 @@
 <div class="container">
-  <h5><%= @tag.name %>の投稿一覧</h5>
-
-  <% @tag_list.each do |list| %>
-    <%= link_to list.name, search_tag_path(tag_id: list.id) %>
-    <%="(#{list.reviews.count})" %>
-  <% end %>
-
+  <div class="row border-bottom border-dark">
+    <h3 class="font-weight-normal mt-3"><%= @tag.name %>の投稿一覧</h3>
+  </div>
+  <div class="row mt-2 mb-4">
+    <%= render 'public/reviews/tag_index', tag_list: @tag_list, reviews: @reviews %>
+  </div>
   <%= render 'public/reviews/index', reviews: @reviews %>
 </div>

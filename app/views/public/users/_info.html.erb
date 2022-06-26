@@ -2,18 +2,26 @@
       <tr><%= image_tag user.get_user_image(100, 100) %></tr>
       <tr>
 	      <th>nickname</th>
-	      <th><%= user.nickname %></th>
+	      <th>
+	        <%= link_to user_path(user.id) do %>
+	          <%= user.nickname %>
+	        <% end %>
+	      </th>
       </tr>
       <tr>
 	      <th>introduction</th>
 	      <th><%= user.introduction %></th>
+      </tr>
+      <tr>
+        <th>reviews</th>
+        <th><%= user.reviews.count %> 件</th>
       </tr>
 <% if users.exists? %>
       <tr>
         <th>follows</th>
         <th>
           <%= link_to user_followings_path(user) do %>
-          <%= user.followings.count %>
+          <%= user.followings.count %> フォロー
           <% end %>
         </th>
       </tr>
@@ -21,7 +29,7 @@
         <th>followers</th>
         <th>
           <%= link_to user_followers_path(user) do %>
-          <%= user.followers.count %>
+          <%= user.followers.count %> フォロワー
           <% end %>
         </th>
       </tr>

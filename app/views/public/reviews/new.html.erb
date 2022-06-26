@@ -1,14 +1,13 @@
 <div class="container">
-
+  <%= render 'layouts/errors', obj: @review %>
   <div class="row">
     <h3 class="bg-secondary text-white d-inline-block px-4 ml-3">投稿内容入力</h3>
-    <%= render 'layouts/errors', obj: @review %>
   </div>
 
   <div class="row">
 
     <div class="col-5">
-      <h5 class="mt-2">訪問先を入力</h5>
+      <h5 class="mt-2"><i class="fas fa-map-marked-alt"></i>訪問先を入力</h5>
       <input id="address" type="textbox" value="GeekSalon">
       <input type="button" value="検索" onclick="codeAddress()">
       <p style="font-size: 12px;">マーカーをドラック＆ドロップで位置の調整ができます。</p>
@@ -86,12 +85,12 @@
         <%= f.text_field :travel_cost %>円
       </div>
 
-      <h7>宿泊費用（任意）</h7>
+      <h7>宿泊費用（必須）</h7>
       <div class="form-group">
         <%= f.text_field :accommodation_fee %>円
       </div>
 
-      <h7>宿泊日数（任意）</h7>
+      <h7>宿泊日数（必須）</h7>
       <div class="form-group">
         <%= f.select :night, Review.nights.keys.map {|k| [I18n.t("enums.review.night.#{k}"), k]}, { include_blank: '!--選択してください--'} %>
       </div>

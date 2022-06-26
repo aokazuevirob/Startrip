@@ -22,6 +22,8 @@ module Startrip
     # enumのデフォルト言語を和訳
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config/locales/*.yml').to_s]
+    # タイムゾーンの取得
+    config.time_zone = 'Tokyo'
 
   end
 end
