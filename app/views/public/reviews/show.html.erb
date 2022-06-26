@@ -36,7 +36,7 @@
             <tbody>
               <tr>
                 <td>訪問国</td>
-                <td><%= @review.travel_country.name %></td>
+                <td><%if @review.travel_country != nil%><%= @review.travel_country.name %><%else%>未設定<% end %></td>
               </tr>
               <tr>
                 <td>訪問地域</td>
