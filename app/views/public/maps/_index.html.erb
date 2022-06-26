@@ -36,7 +36,7 @@
       transitLayer.setMap(map);
 
       //複数マーカー ここから
-      <% @reviews.each do |review|%>
+      <% reviews.each do |review|%>
         ( function() {
           let markerLatLng = new google.maps.LatLng({lat: <%= review.lat %>, lng: <%= review.lng %>}); // 緯度経度のデータ作成
           let marker = new google.maps.Marker({
