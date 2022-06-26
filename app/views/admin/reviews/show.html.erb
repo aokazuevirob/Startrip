@@ -15,7 +15,9 @@
 
       <div class="row">
         <div class="col-md-6 justify-content-center">
-          <%= image_tag @review.get_travel_image(300, 300) %>
+          <% if @review.travel_image.present? %>
+            <%= image_tag @review.get_travel_image(300, 300) %>
+          <% end %>
           <div class="d-flex">
             <div><%= @review.favorites.count %>いいね</div>
           </div>

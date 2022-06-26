@@ -18,7 +18,9 @@
 
       <div class="row">
         <div class="col-md-6 justify-content-center">
-          <%= image_tag @review.get_travel_image(300, 300) %>
+          <% if @review.travel_image.present? %>
+            <%= image_tag @review.get_travel_image(300, 300) %>
+          <% end %>
           <div class="d-flex">
           <% if user_signed_in? %>
           <div class="favorite-btn_<%= @review.id %>">
@@ -40,7 +42,7 @@
               </tr>
               <tr>
                 <td>訪問地域</td>
-                <td data-score=""><%= @review.area %></td>
+                <td><%= @review.area %></td>
               </tr>
               <tr>
                 <td>おすすめ度</td>

@@ -63,9 +63,9 @@ class User < ApplicationRecord
 
   def self.looks(search, word)
     if search == "partial_match"
-      @user = User.where("nickname LIKE?","%#{word}%")
+      @user = User.where("last_name LIKE?","%#{word}%").or(User.where("first_name LIKE?", "%#{word}%").or(User.where("nickname LIKE?", "%#{word}%")))
     elsif search == "perfect_match"
-      @user = User.where("nickname LIKE?", "#{word}")
+      @user = User.where("last_name LIKE?", "#{word}").or(User.where("first_name LIKE?", "#{word}").or(User.where("nickname LIKE?", "#{word}")))
     else
       @user = User.all
     end
