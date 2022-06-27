@@ -18,7 +18,7 @@ user1 = User.create!(
   last_name: '山田', first_name: '太郎', nickname: 'タロ助', email: 'taro@example.com', password: 'yyyyyy', password_confirmation: 'yyyyyy',
   phone_number: '02012345678', gender: 'male', birth_date: '1995-09-16', introduction: '大学生になってから海外旅行に興味を持ち、数カ国旅行をしました！',
   )
-user1.user_image.attach(io: File.open(Rails.root.join('app/assets/images/user-image1.jpg')),filename: 'user-image1.jpg')
+user1.user_image.attach(io: File.open(Rails.root.join('app/assets/images/user-image1.png')),filename: 'user-image1.png')
 
 user2 = User.create!(
   last_name: '轟', first_name: '俊介', nickname: 'トド', email: 'todo@example.com', password: 'tototo', password_confirmation: 'tototo',
@@ -36,7 +36,7 @@ user4 = User.create!(
   last_name: '令和', first_name: '花子', nickname: 'hana', email: 'hana@example.com', password: 'reiwaera', password_confirmation: 'reiwaera',
   phone_number: '02045678912', gender: 'female', birth_date: '2005-10-03', introduction: '海外の美味しい料理を見つけることが趣味です。料理に関するレビューをメインに投稿しています。'
   )
-user4.user_image.attach(io: File.open(Rails.root.join('app/assets/images/user-image1.jpg')),filename: 'user-image1.jpg')
+user4.user_image.attach(io: File.open(Rails.root.join('app/assets/images/user-image1.png')),filename: 'user-image1.png')
 
 user5 = User.create!(
   last_name: 'John', first_name: 'Smith', nickname: 'John', email: 'john@example.com', password: 'jjoohhnn', password_confirmation: 'jjoohhnn',
@@ -54,7 +54,7 @@ user7 = User.create!(
   last_name: '佐藤', first_name: '達子', nickname: 'たっちゃん', email: 'sato@example.com', password: '123456789', password_confirmation: '123456789',
   phone_number: '02078912345', gender: 'female', birth_date: '1986-08-10', introduction: '閲覧専用アカウント'
   )
-user7.user_image.attach(io: File.open(Rails.root.join('app/assets/images/user-image1.jpg')),filename: 'user-image1.jpg')
+user7.user_image.attach(io: File.open(Rails.root.join('app/assets/images/user-image1.png')),filename: 'user-image1.png')
 
 user8 = User.create!(
   last_name: '退会', first_name: '専用', nickname: '退会用', email: 'taikai@example.com', password: 'taikai', password_confirmation: 'taikai',
