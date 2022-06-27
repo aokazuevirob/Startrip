@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   validates :nickname, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction, {length: {maximum: 50}}
+  validates :introduction, {length: {maximum: 200}}
 
   enum gender: { male: 0, female: 1, no_answer: 2}
 
