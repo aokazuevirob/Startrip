@@ -13,6 +13,59 @@ Admin.create!(
   password: 'testadmin'
   )
 
+# User（会員情報）
+User.create!(
+  last_name: '山田', first_name: '太郎', nickname: 'タロ助', email: 'taro@example.com', password: 'yyyyyy', password_confirmation: 'yyyyyy',
+  phone_number: '02012345678', gender: 'male', birth_date: '1995-09-16', introduction: '大学生になってから海外旅行に興味を持ち、数カ国旅行をしました！'
+  )
+
+User.create!(
+  last_name: '轟', first_name: '俊介', nickname: 'トド', email: 'todo@example.com', password: 'tototo', password_confirmation: 'tototo',
+  phone_number: '02023456789', gender: 'male', birth_date: '2000-11-15', introduction: '国内旅行が多いです。今後は海外への旅行を増やしていきます！'
+  )
+
+User.create!(
+  last_name: 'ジャンク', first_name: 'キッド', nickname: 'ジャンク', email: 'kid@example.com', password: 'zzzzzz', password_confirmation: 'zzzzzz',
+  phone_number: '02034567891', gender: 'no_answer', birth_date: '1970-05-20', introduction: 'Hello guys! Please see if you like.'
+  )
+
+User.create!(
+  last_name: '令和', first_name: '花子', nickname: 'hana', email: 'hana@example.com', password: 'reiwaera', password_confirmation: 'reiwaera',
+  phone_number: '02045678912', gender: 'female', birth_date: '2005-10-03', introduction: '海外の美味しい料理を見つけることが趣味です。料理に関するレビューをメインに投稿しています。'
+  )
+
+User.create!(
+  last_name: 'John', first_name: 'Smith', nickname: 'John', email: 'john@example.com', password: 'jjoohhnn', password_confirmation: 'jjoohhnn',
+  phone_number: '02056789123', gender: 'male', birth_date: '1990-12-25', introduction: '<Countries I’ve visited> United States, China, Japan, Cambodia'
+  )
+
+User.create!(
+  last_name: '佐藤', first_name: '達也', nickname: 'evirob', email: 'evirob@example.com', password: 'evirob', password_confirmation: 'evirob',
+  phone_number: '02067891234', gender: 'male', birth_date: '1986-08-11', introduction: '世界遺産検定3級を取得。趣味：世界遺産めぐり'
+  )
+
+User.create!(
+  last_name: '佐藤', first_name: '達子', nickname: 'たっちゃん', email: 'sato@example.com', password: '123456789', password_confirmation: '123456789',
+  phone_number: '02078912345', gender: 'female', birth_date: '1986-08-10', introduction: '閲覧専用アカウント'
+  )
+
+User.create!(
+  last_name: '退会', first_name: '専用', nickname: '退会用', email: 'taikai@example.com', password: 'taikai', password_confirmation: 'taikai',
+  phone_number: '02089123456', gender: 'no_answer', birth_date: '1999-09-09', is_deleted: true, introduction: '退会専用アカウント'
+  )
+
+User.create!(
+  last_name: '江戸川', first_name: '次郎', nickname: 'edo', email: 'edo@example.com', password: 'edoedoedo', password_confirmation: 'edoedoedo',
+  phone_number: '11122223333', gender: 'male', birth_date: '1960-11-11', introduction: '江戸の町から出たことありません。生粋の江戸っ子です。'
+  )
+
+User.create!(
+  last_name: 'テスト', first_name: 'ユーザー', nickname: 'testuser', email: 'testuser@example.com', password: 'testuser', password_confirmation: 'testuser',
+  phone_number: '22233334444', gender: 'male', birth_date: '2001-01-01', introduction: 'テストユーザー'
+  )
+
+# review（投稿情報）
+
 nation = Genre.create(name: '国名')
 asia, europe, north_america, south_america, oceania, africa, middle_east = nation.children.create(
   [
