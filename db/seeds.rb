@@ -74,6 +74,7 @@ user10 = User.create!(
   )
 user10.user_image.attach(io: File.open(Rails.root.join('app/assets/images/user-image2.jpg')),filename: 'user-image2.jpg')
 
+# 国名一覧
 nation = Genre.create(name: '国名')
 asia, europe, north_america, south_america, oceania, africa, middle_east = nation.children.create(
   [
