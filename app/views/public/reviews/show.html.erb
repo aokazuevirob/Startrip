@@ -23,12 +23,12 @@
           <% end %>
           <div class="d-flex">
           <% if user_signed_in? %>
-          <div class="favorite-btn_<%= @review.id %>">
-            <%= render 'public/favorites/btn', review: @review %>
-          </div>
-          <div id="bookmark_button_<%= @review.id %>" style="margin-left: 20px;">
-            <%= render 'public/bookmarks/mark', review: @review %>
-          </div>
+            <div class="favorite-btn_<%= @review.id %>">
+              <%= render 'public/favorites/btn', review: @review %>
+            </div>
+            <div id="bookmark_button_<%= @review.id %>" style="margin-left: 20px;">
+              <%= render 'public/bookmarks/mark', review: @review %>
+            </div>
           <% end %>
           </div>
         </div>
@@ -73,7 +73,10 @@
       <div class="row review-title">
         <%= @review.title %>
       </div>
-      <h5 class="border-bottom border-dark">レビュー内容</h5>
+      <div class="row border-bottom border-dark" style="width: 690px; height: 24px; margin: 0;">
+        <h5>レビュー内容</h5>
+        <span class="sentiment-score" style="margin-left: 30px;">[感情分析：<%= @review.score %>点]</span>
+      </div>
       <div class="row review-body">
         <%= @review.body %>
       </div>

@@ -10,6 +10,8 @@ class Public::ReviewsController < ApplicationController
     @review.user_id = current_user.id
     # split(',')で正規表現による分割「,」で文字列を区切り、配列で返す
     tag_list = params[:review][:name].split(',')
+    # APIから結果を取得し、点数化
+    @review.score = Language.get_data(review_params[:body])
     if @review.save
       # save_tagはmodelに定義
       @review.save_tag(tag_list)
@@ -44,6 +46,8 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     # 入力されたtagを取得
     tag_list = params[:review][:name].split(',')
+    # APIから結果を取得し、点数化
+    @review.score = Language.get_data(review_params[:body])
     if @review.update(review_params)
       if params[:review][:status] == "published" || params[:review][:status] == "unpublished"
         # 既に紐づいていたtagを格納、取得して削除
