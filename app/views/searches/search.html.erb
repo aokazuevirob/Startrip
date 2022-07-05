@@ -1,33 +1,31 @@
 <div class="container">
   <% if admin_signed_in? %>
-  <% if @range == "Review" %>
-  <div class="row mt-5">
-    <h3 class="border-bottom border-dark mb-4">投稿検索結果：" <%= @word %> "</h3>
-  </div>
-  <%= render 'admin/reviews/index', reviews: @reviews %>
+    <% if @range == "Review" %>
+    <div class="row mt-5">
+      <h3 class="border-bottom border-dark mb-4">投稿検索結果：" <%= @word %> "</h3>
+    </div>
+    <%= render 'admin/reviews/index', reviews: @reviews %>
 
-  <% else %>
-  <div class="row mt-5">
-    <h3 class="border-bottom border-dark mb-4">ユーザー検索結果：" <%= @word %> "</h3>
-  </div>
-  <%= render 'admin/users/index', users: @users %>
-
-  <% end %>
+    <% else %>
+    <div class="row mt-5">
+      <h3 class="border-bottom border-dark mb-4">ユーザー検索結果：" <%= @word %> "</h3>
+    </div>
+    <%= render 'admin/users/index', users: @users %>
+    <% end %>
   <% end %>
 
   <% if user_signed_in? %>
-  <% if @range == "Review" %>
-  <div class="row mt-5">
-    <h3 class="border-bottom border-dark mb-4">投稿検索結果：" <%= @word %> "</h3>
-  </div>
-  <%= render 'public/reviews/index', reviews: @reviews %>
+    <% if @range == "Review" %>
+    <div class="row mt-5">
+      <h3 class="border-bottom border-dark mb-4">投稿検索結果：" <%= @word %> "</h3>
+    </div>
+    <%= render 'public/reviews/index', reviews: @reviews %>
 
-  <% else %>
-  <div class="row mt-5">
-    <h3 class="border-bottom border-dark mb-4">ユーザー検索結果：" <%= @word %> "</h3>
-  </div>
-  <%= render 'public/users/index', users: @users %>
-
-  <% end %>
+    <% else %>
+    <div class="row mt-5">
+      <h3 class="border-bottom border-dark mb-4">ユーザー検索結果：" <%= @word %> "</h3>
+    </div>
+    <%= render 'public/users/index', users: @users %>
+    <% end %>
   <% end %>
 </div>
