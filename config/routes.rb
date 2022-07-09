@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get "about" => "homes#about"
     get "user/confirm" => "users#confirm"
+    # タグ検索結果の取得
     get "search_tag" => "reviews#search_tag"
     resources :maps, only: [:index]
     resources :countries, only: [:index, :show]
@@ -38,7 +39,9 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       member do
+        # 下書き/非公開の管理ページ
         get "manage"
+        # bookmark一覧の取得
         get "bookmark"
         get "quit"
         patch "out"
@@ -59,6 +62,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:index, :show, :edit, :update] do
       member do
+        # 会員登録情報の取得
         get 'confirm'
       end
     end

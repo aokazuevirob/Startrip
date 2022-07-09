@@ -25,6 +25,7 @@ class Admin::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     # 入力されたtagを取得
     tag_list = params[:review][:name].split(',')
+    # Google_API/自然言語処理・感情分析
     @review.score = Language.get_data(review_params[:body])
     if @review.update(review_params)
       if params[:review][:status] == "published" || params[:review][:status] == "unpublished"
