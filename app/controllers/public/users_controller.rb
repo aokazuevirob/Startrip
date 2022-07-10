@@ -16,7 +16,7 @@ class Public::UsersController < ApplicationController
     @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
-# 投稿範囲の指定
+# 下書き・非公開の管理
   def manage
     @user = current_user
     @reviews = @user.reviews.where(status: [:draft, :unpublished]).order('created_at DESC')
