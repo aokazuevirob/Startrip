@@ -39,6 +39,7 @@ class User < ApplicationRecord
     user_bg_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  # ゲストログイン
   def self.guest
     find_or_create_by!(last_name: 'guest', first_name: 'user', nickname: 'ゲスト', email: 'guest@example.com', phone_number: '11111111111', gender: 'no_answer', birth_date: '1995-01-01') do |user|
       user.password = SecureRandom.urlsafe_base64

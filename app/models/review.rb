@@ -32,18 +32,21 @@ class Review < ApplicationRecord
   end
 
   def favorited_by?(user)
+    # いいねされているか確認
     favorites.where(user_id: user.id).exists?
   end
 
   def bookmarked_by?(user)
-    # bookmarkされていないか
+    # bookmarkされているか確認
     bookmarks.where(user_id: user).exists?
   end
 
+  # 訪問国を定義
   def travel_country
     Carmen::Country.coded(country_code)
   end
 
+  # 出国した国を定義
   def departure_country
     Carmen::Country.coded(departure)
   end
