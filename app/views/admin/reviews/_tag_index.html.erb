@@ -1,4 +1,4 @@
-<!--render呼び出し時に「tag_list: @tag_list」を追記-->
+<!--tagの表示-->
 <% tag_list.each do |list| %>
   <%= link_to list.name,  admin_search_tag_path(tag_id: list.id) %>
   <%= "(#{list.reviews.count})" %>

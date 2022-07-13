@@ -15,6 +15,7 @@
       <div class="d-flex pl-5">
         <% if user_signed_in? %>
         <p class="favorite-btn_<%= review.id %>">
+          <!--いいね-->
           <%= render 'public/favorites/btn', review: review %>
         </p>
         <p style="margin-left: 25px;"><%= link_to "#{review.review_comments.count} コメント", admin_review_path(review.id) %></p>
