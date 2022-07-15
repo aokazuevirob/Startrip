@@ -1,6 +1,13 @@
 @import "skippr";
 @import "public/homes";
 
+// ブラウザ特有のCSS解除
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --body: #FFFFFF;
   --header: #EEEEEE;
@@ -23,6 +30,7 @@ header{
 
 main{
   flex: 1;
+  width: 90%;
 }
 
 footer{
