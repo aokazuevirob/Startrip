@@ -1,5 +1,6 @@
 @import "skippr";
 @import "public/homes";
+@charset "UTF-8";
 
 // ブラウザ特有のCSS解除
 * {
@@ -161,4 +162,12 @@ ul {
   border-bottom: solid 3px black;
 }
 
+#back{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
 
+.arrow{
+  width: 50px;
+}
