@@ -40,3 +40,42 @@
 
   </div>
 </nav>
+
+<div id="sp-menu">
+  <h2>MENU</h2>
+      <ul>
+        <div class="dropdown">
+          <button type="button" class="btn btn-outline-light btn-block text-green dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search-plus"></i>検索
+          </button>
+          <div class="dropdown-menu p-4 text-muted" style="margin-left: 25%;">
+            <h6 class="dropdown-header">検索フォーム</h6>
+            <div class="dropdown-divider"></div>
+            <%= render 'layouts/search' %>
+          </div>
+        </div>
+        <li><%= link_to 'About', about_path, class: 'btn btn-outline-light btn-block' %></li>
+        <li><%= link_to '国名一覧', genres_path, class: 'btn btn-outline-light btn-block' %></li>
+        <li><%= link_to '投稿一覧', reviews_path, class: 'btn btn-outline-light btn-block' %></li>
+        <div class="dropdown">
+          <button type="button" class="btn btn-outline-light btn-block text-green dropdown-toggle" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ログイン方法を選択
+          </button>
+          <div class="dropdown-menu" style="margin-left: 25%;" aria-labelledby="dropdownMenuButton1">
+            <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post, class: "dropdown-item" %>
+            <div class="dropdown-divider" style="margin-bottom: 8px;"></div>
+            <%= link_to "L o g    i n", new_user_session_path, class: "dropdown-item" %>
+            <div class="dropdown-divider" style="margin-bottom: 8px;"></div>
+            <%= link_to "S i g n    U p", new_user_registration_path, class: "dropdown-item" %>
+          </div>
+        </div>
+      </ul>
+</div>
+
+<div id="hm-icon" class="d-lg-none">
+  <a class="menu-trigger" href="#">
+    <span></span>
+    <span></span>
+    <span></span>
+  </a>
+</div>
