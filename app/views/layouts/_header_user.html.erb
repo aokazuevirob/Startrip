@@ -1,13 +1,12 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
 
-    <div class="navbar-brand">
+    <div class="navbar-brand d-flex">
       <%= link_to root_path do %>
         <%= image_tag "logo.png", size: "200x60" %>
       <% end %>
-    </div>
-
       <p class="name-box" style="color: #00CC66;">ログイン中：<%= current_user.nickname %></p>
+    </div>
 
     <!--会員ログイン時に表示-->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -32,3 +31,33 @@
 
   </div>
 </nav>
+
+<!--ハンバーガーメニュー-->
+<div id="sp-menu">
+  <h2>MENU</h2>
+  <ul>
+    <div class="dropdown">
+      <button type="button" class="btn btn-outline-light btn-block text-green dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-search-plus"></i>検索
+      </button>
+      <div class="dropdown-menu p-4 text-muted" style="margin-left: 25%;">
+        <h6 class="dropdown-header">検索フォーム</h6>
+        <div class="dropdown-divider"></div>
+        <%= render 'layouts/search' %>
+      </div>
+    </div>
+    <li><%= link_to 'About', about_path, class: 'btn btn-outline-light btn-block' %></li>
+    <li><%= link_to '国名一覧', genres_path, class: 'btn btn-outline-light btn-block' %></li>
+    <li><%= link_to '投稿一覧', reviews_path, class: 'btn btn-outline-light btn-block' %></li>
+    <li><%= link_to 'マイページ', user_path(current_user), class: 'btn btn-outline-light btn-block text-green' %></li>
+    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-light btn-block text-green' %></li>
+  </ul>
+</div>
+<!--ハンバーガーアイコン-->
+<div id="hm-icon" class="d-lg-none">
+  <a class="menu-trigger" href="#">
+    <span></span>
+    <span></span>
+    <span></span>
+  </a>
+</div>
