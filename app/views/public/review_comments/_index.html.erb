@@ -1,54 +1,50 @@
 <!--新規コメント3件を取得する-->
 <% review_comments.first(3).each do |review_comment| %>
-  <%# unless review_comment.id.nil? %>
-  	<li class="comment-container">
-		  <div class="comment-box">
-			  <div class="comment-avatar">
-				  <%= image_tag review_comment.user.get_user_image(40, 40) %>
-				  <%= link_to "#{review_comment.user.nickname}", user_path(review_comment.user.id) %>
-			  </div>
-			  <div class="comment-text">
-			    <div class="comment-entry">
-  				  <%= review_comment.comment %>
-  				  <% if review_comment.user == current_user %>
-			        <%= link_to review_review_comment_path(review_comment.review_id, review_comment.id), method: :delete, remote: true do %>
-			      	  <i class="fas fa-trash fa-pull-right" style="color: black;"></i>
-			        <% end %>
-			    	<% end %>
-  				</div>
-  			  <div class="comment-date text-right">
-				    <span><%= review_comment.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-				  </div>
-			  </div>
-		  </div>
-	  </li>
-  <%# end %>
+<li class="comment-container">
+	<div class="comment-box">
+		<div>
+			<%= image_tag review_comment.user.get_user_image(40, 40) %>
+			<%= link_to "#{review_comment.user.nickname}", user_path(review_comment.user.id) %>
+		</div>
+	  <div>
+	    <div class="comment-entry">
+        <%= review_comment.comment %>
+  		  <% if review_comment.user == current_user %>
+			    <%= link_to review_review_comment_path(review_comment.review_id, review_comment.id), method: :delete, remote: true do %>
+			      <i class="fas fa-trash fa-pull-right" style="color: black;"></i>
+			    <% end %>
+			  <% end %>
+  		</div>
+  		<div class="comment-date text-right">
+			  <span><%= review_comment.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+			</div>
+		</div>
+	</div>
+</li>
 <% end %>
 
 <div class="collapse" id="collapseExample">
-			<% review_comments.offset(3).each do |review_comment| %>
-			  <%# unless comment.id.nil? %>
-			  	<li class="comment-container">
-					<div class="comment-box">
-						<div class="comment-avatar">
-							<%= image_tag review_comment.user.get_user_image(40, 40) %>
-				      <%= link_to "#{review_comment.user.nickname}", user_path(review_comment.user.id) %>
-						</div>
-						<div class="comment-text">
-						  <div class="comment-entry">
-			  		    <%= review_comment.comment %>
-			  				  <% if review_comment.user == current_user %>
-						        <%= link_to review_review_comment_path(review_comment.review_id, review_comment.id), method: :delete, remote: true do %>
-			      					<i class="fas fa-trash fa-pull-right" style="color: black;"></i>
-			      				<% end %>
-						    	<% end %>
-			  				</div>
-			  			<div class="comment-date text-right">
-							  <span><%= review_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></span>
-							</div>
-						</div>
+	<% review_comments.offset(3).each do |review_comment| %>
+		<li class="comment-container">
+		  <div class="comment-box">
+				<div>
+					<%= image_tag review_comment.user.get_user_image(40, 40) %>
+				  <%= link_to "#{review_comment.user.nickname}", user_path(review_comment.user.id) %>
+				</div>
+			  <div>
+					<div class="comment-entry">
+			  	  <%= review_comment.comment %>
+			  		<% if review_comment.user == current_user %>
+						  <%= link_to review_review_comment_path(review_comment.review_id, review_comment.id), method: :delete, remote: true do %>
+			      	  <i class="fas fa-trash fa-pull-right" style="color: black;"></i>
+			      	<% end %>
+						<% end %>
+			  	</div>
+			  	<div class="comment-date text-right">
+						<span><%= review_comment.created_at.strftime('%Y/%m/%d %H:%M') %></span>
 					</div>
-				</li>
-			  <%# end %>
-			<% end %>
-	</div>
+				</div>
+			</div>
+		</li>
+	<% end %>
+</div>
