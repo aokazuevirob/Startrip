@@ -7,7 +7,7 @@
     <div class="col-md-9">
       <div class="row">
         <h4 class="font-wight-normal ml-2">投稿詳細</h4>
-        <h7 class="offset-1">投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></h7>
+        <h6 class="offset-1">投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></h6>
         <p class="text-right offset-3">
           <% if @review.user == current_user %>
           　<!--#変数展開使用-->
