@@ -23,7 +23,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.where(status: :published).order('id DESC')
+    @reviews = Review.published.order('id DESC')
     @review = Review.new
     @tag_list = Tag.all
   end
@@ -76,7 +76,7 @@ class Public::ReviewsController < ApplicationController
   def search_tag
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @reviews = @tag.reviews.where(status: :published).order('id DESC')
+    @reviews = @tag.reviews.published.order('id DESC')
   end
 
   private
