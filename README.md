@@ -43,4 +43,4 @@
 
 ## 使用素材
 - [google map] (https://developers.google.com/maps/documentation?hl=ja)
-- [google Natural Language] (https://cloud.google.com/natural-language?hl=ja)
+- [google Natural Language API] (https://cloud.google.com/natural-language?hl=ja)
