@@ -1,31 +1,31 @@
-    <table class='table'>
-      <tr><%= image_tag user.get_user_image(100, 100) %></tr>
-      <tr>
-	      <th>nickname</th>
-	      <th>
-	        <%= link_to admin_user_path(user.id) do %>
-	          <%= user.nickname %>
-	        <% end %>
-	      </th>
-      </tr>
-      <tr>
-	      <th>introduction</th>
-	      <th><%= user.introduction %></th>
-      </tr>
+<table class='table'>
+  <tr><%= image_tag user.get_user_image(100, 100) %></tr>
+  <tr>
+	  <th>nickname</th>
+	  <th>
+	    <%= link_to admin_user_path(user.id) do %>
+	      <%= user.nickname %>
+	    <% end %>
+	  </th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th><%= user.introduction %></th>
+  </tr>
 <% if users.exists? %>
-      <tr>
-        <th>follows</th>
-        <th>
-          <%= user.followings.count %>
-        </th>
-      </tr>
-      <tr>
-        <th>followers</th>
-        <th>
-          <%= user.followers.count %>
-        </th>
-      </tr>
-    </table>
+  <tr>
+    <th>follows</th>
+    <th>
+      <%= user.followings.count %>
+    </th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th>
+      <%= user.followers.count %>
+    </th>
+  </tr>
+</table>
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
